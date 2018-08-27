@@ -32,6 +32,7 @@ You can go to the examples folder, however the usage of the module could be like
 
 *Configure the provider here before the module invocation, see the examples folder*
 
+```hcl
 module "bastion-host" {
   source  = "../../"
   project_name = “<PROJECT ID>”
@@ -45,6 +46,7 @@ module "bastion-host" {
   network_subnet = “default”
   ipv4_cidr_range = “[0.0.0.0/0]”
 }
+```
 
 Then perform the following commands on the root folder:
 
