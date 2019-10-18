@@ -1,4 +1,6 @@
 resource "google_compute_instance" "priv_host_a_1" {
+  project      = var.project
+  zone         = var.zone
   name         = "priv-host-a-1"
   machine_type = "n1-standard-1"
 
@@ -9,11 +11,11 @@ resource "google_compute_instance" "priv_host_a_1" {
   }
 
   network_interface {
-    subnetwork = "${var.subnet}"
+    subnetwork = var.subnet
   }
 
   service_account {
-    email  = "${google_service_account.service-a.email}"
+    email  = google_service_account.service_a.email
     scopes = ["cloud-platform"]
   }
 
@@ -23,6 +25,8 @@ resource "google_compute_instance" "priv_host_a_1" {
 }
 
 resource "google_compute_instance" "priv_host_a_2" {
+  project      = var.project
+  zone         = var.zone
   name         = "priv-host-a-2"
   machine_type = "n1-standard-1"
 
@@ -33,11 +37,11 @@ resource "google_compute_instance" "priv_host_a_2" {
   }
 
   network_interface {
-    subnetwork = "${var.subnet}"
+    subnetwork = var.subnet
   }
 
   service_account {
-    email  = "${google_service_account.service-a.email}"
+    email  = google_service_account.service_a.email
     scopes = ["cloud-platform"]
   }
 
@@ -47,6 +51,8 @@ resource "google_compute_instance" "priv_host_a_2" {
 }
 
 resource "google_compute_instance" "priv_host_b_1" {
+  project      = var.project
+  zone         = var.zone
   name         = "priv-host-b-1"
   machine_type = "n1-standard-1"
 
@@ -57,11 +63,11 @@ resource "google_compute_instance" "priv_host_b_1" {
   }
 
   network_interface {
-    subnetwork = "${var.subnet}"
+    subnetwork = var.subnet
   }
 
   service_account {
-    email  = "${google_service_account.service-b.email}"
+    email  = google_service_account.service_b.email
     scopes = ["cloud-platform"]
   }
 
@@ -69,3 +75,4 @@ resource "google_compute_instance" "priv_host_b_1" {
     enable-oslogin = "TRUE"
   }
 }
+

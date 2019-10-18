@@ -14,23 +14,29 @@
  * limitations under the License.
  */
 
-variable "project_id" {
+variable "project" {
   description = "The ID of the project in which to provision resources."
-  type        = "string"
-}
-
-variable "subnet" {
-  default = "default"
+  type = string
 }
 
 variable "network" {
-  default = "default"
+  description = "Self link for the VPC network"
+  type = string
+}
+
+variable "subnet" {
+  description = "Self link for the Subnet within var.network"
+  type = string
+}
+
+variable "user_a" {
+  description = "User in the IAM policy format of user:{email}"
+}
+
+variable "user_b" {
+  description = "User in the IAM policy format of user:{email}"
 }
 
 variable "zone" {
-  default = "us-central1-a"
+  default = "us-west1-a"
 }
-
-variable "user-a" {}
-
-variable "user-b" {}

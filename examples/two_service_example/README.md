@@ -1,41 +1,70 @@
 # Two Service Example
 
-This example illustrates how to use the `iap-bastion` module. It illustrate an example where there are two services being deployed in a single project. Service A is deployed to two VMS (priv-host-a-1 and priv-host-a-2) and Service B is deployed to a single VM (priv-host-b-1). The bastion host module is deployed that will allow User A to access VM's for Service A, and User B to access Service B through the shared bastion host.
+This example illustrates how to use the `bastion-host` module. It illustrate an example where there are two services being deployed in a single project. Service A is deployed to two VMS (priv-host-a-1 and priv-host-a-2) and Service B is deployed to a single VM (priv-host-b-1). The bastion host module is deployed that will allow User A to access VM's for Service A, and User B to access Service B through the shared bastion host. You'll notice that we create a firewall rule that allows the bastion to talk to the rest of the network on port 22 using the output of the bastion service account email for simplicity. This can and should be scoped down to allow access to specific hosts.
 
-After this module is deployed, you can test ssh-ing to the private hosts by following these steps:
 
-1. Login as User A:
+## Deploy
 
-- `gcloud auth login` login as user A
+Create a `terraform.tfvars` file with required variables. Should look something like:
 
-2. If you have existing google_compute_engine ssh keys, ( ~/.ssh/google_compute_engine.pub ) back them up, otherwise continue to step 3
+```
+project = "my-project"
+user_a = "user:me@example.com"
+user_b = "user:someone@example.com"
+network = "projects/my-project/global/networks/default"
+subnet = "projects/rcanty-project-0529/regions/us-west1/subnetworks/default"
+```
 
-- `cd ~/.ssh` change working directory to ssh directory
-- `mv google_compute_engine.pub google_compute_engine_backup.pub` backup public key
-- `mv google_compute_engine google_compute_engine_backup_backup` backup private key
+Run the apply
 
-3. Change project to sample project
+```
+terraform apply -var-file terraform.tfvars
+```
 
-- `gcloud config set project <project-id>` change to project id that you used
+## Usage
 
-4. Generate new google compute engine keys and ssh over to bastion host
+After this module is deployed, you can test SSHing to the private hosts by following these steps:
 
-- `gcloud compute ssh bastion-vm --zone=<zone you used>` zone defaults to us-central1-a
+Login as User A:
 
-5. Exit out from bastion
+```
+gcloud auth login
+```
 
-- `exit` should return to local terminal
+If you have existing google_compute_engine ssh keys, ( ~/.ssh/google_compute_engine.pub ) back them up, otherwise skip this step
 
-6. Start SSH Agent
+```
+cd ~/.ssh # change working directory to ssh directory
+mv google_compute_engine.pub google_compute_engine_backup.pub # backup public key
+mv google_compute_engine google_compute_engine_backup_backup # backup private key
+```
 
-- `eval "$(ssh-agent -s)"`
+Update your gcloud config
 
-7. Add SSH key to the ssh-agent
+```
+gcloud config set project <project-id>
+gcloud config set compute/region us-west1
+gcloud config set compute/zone us-west1-a
+```
 
-- `ssh-add ~/.ssh/google_compute_engine`
+Generate new google compute engine keys and ssh over to bastion host
 
-8. SSH to private VM through bastion host
+```
+gcloud compute ssh bastion-vm
+```
 
-- `gcloud compute ssh bastion-vm --zone=us-central1-a --ssh-flag="-A" --command "ssh priv-host-a-1" -- -t`
+Exit out from bastion using `exit`. Then start SSH Agent and add your key to it:
 
-9. Can also try sshing to the other host, priv-host-a-2. Should work. Try sshing to the B host, (priv-host-b-2) should fail. Try using user B, get another user to follow above steps. If you have access to a test account, you can use that as well, but make sure to backup the ssh keys from the steps above.
+```
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/google_compute_engine
+```
+
+SSH to private VM through bastion host
+
+```
+gcloud compute ssh bastion-vm --ssh-flag="-A" --command "ssh priv-host-a-1" -- -t
+```
+
+
+You can also try SSHing to the other host, priv-host-a-2. This should work. Try sshing to the B host, (priv-host-b-2) should fail. Try using user B, get another user to follow above steps. If you have access to a test account, you can use that as well, but make sure to backup the ssh keys from the steps above.
