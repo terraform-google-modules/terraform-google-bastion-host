@@ -16,3 +16,15 @@
 output "service_account" {
   value = google_service_account.bastion_host.email
 }
+
+output "hostname" {
+  value = var.name
+}
+
+output "ip_address" {
+  value = google_compute_instance.bastion_vm.network_interface.0.network_ip
+}
+
+output "self_link" {
+  value = google_compute_instance.bastion_vm.self_link
+}

@@ -100,7 +100,7 @@ resource "google_project_iam_binding" "bastion_sa_bindings" {
   members   = ["serviceAccount:${google_service_account.bastion_host.email}"]
 }
 
-# If you are practing least privilege, to enable instance level OS Login, you
+# If you are practicing least privilege, to enable instance level OS Login, you
 # still need the compute.projects.get permission on the project level. The other
 # predefined roles grant additional permissions that aren't needed
 resource "google_project_iam_custom_role" "compute_os_login_viewer" {

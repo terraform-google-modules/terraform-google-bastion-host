@@ -19,11 +19,6 @@ variable "image" {
   default = "gce-uefi-images/centos-7"
 }
 
-variable "instances" {
-  description = "Number of bastion hosts"
-  default = 1
-}
-
 variable "labels" {
   type = "map"
   default = {}
