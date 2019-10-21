@@ -88,7 +88,7 @@ resource "google_service_account_iam_binding" "bastion_sa_user" {
   members            = var.members
 }
 
-resource "google_project_iam_binding" "bastion_sa_bindings" {
+resource "google_project_iam_member" "bastion_sa_bindings" {
   for_each  = toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
@@ -97,7 +97,7 @@ resource "google_project_iam_binding" "bastion_sa_bindings" {
 
   project   = var.project
   role      = each.key
-  members   = ["serviceAccount:${google_service_account.bastion_host.email}"]
+  member   = "serviceAccount:${google_service_account.bastion_host.email}"
 }
 
 # If you are practicing least privilege, to enable instance level OS Login, you
