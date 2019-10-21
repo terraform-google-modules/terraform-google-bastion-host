@@ -16,17 +16,17 @@
 
 variable "project" {
   description = "The ID of the project in which to provision resources."
-  type = string
+  type        = string
 }
 
 variable "network" {
   description = "Self link for the VPC network"
-  type = string
+  type        = string
 }
 
 variable "subnet" {
   description = "Self link for the Subnet within var.network"
-  type = string
+  type        = string
 }
 
 variable "user_a" {

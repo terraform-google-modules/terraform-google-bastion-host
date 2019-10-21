@@ -28,4 +28,3 @@ module "iap_bastion" {
   zone    = var.zone
   members = [var.user_a, var.user_b]
 }
-

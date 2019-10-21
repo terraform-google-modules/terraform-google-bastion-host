@@ -16,6 +16,8 @@ Basic usage of this module is as follows:
 ```hcl
 module "iap_bastion" {
   source = "terraform-google-modules/bastion-host/google"
+  version = 0.1.0
+
   project = var.project
   region = var.region
   zone = var.zone
@@ -50,6 +52,7 @@ resources of this module:
 - Google Cloud Storage JSON API: `storage-api.googleapis.com`
 - Compute Engine API: `compute.googleapis.com`
 - Cloud Identity-Aware Proxy API: `iap.googleapis.com`
+- OS Login API: `oslogin.googleapis.com`
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.

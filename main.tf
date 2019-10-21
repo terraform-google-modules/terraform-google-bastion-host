@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-provider "google-beta" {}
-
 resource "google_service_account" "bastion_host" {
   project      = var.project
   account_id   = "bastion"
   display_name = "Service Account for Bastion"
 }
 
+# NOTE: Use the terraform-google-vm module once Shielded VMs are supported
+# https://github.com/terraform-google-modules/terraform-google-vm/pull/38
 resource "google_compute_instance" "bastion_vm" {
   project      = var.project
   zone         = var.zone
@@ -69,7 +69,7 @@ resource "google_compute_firewall" "allow_from_iap_to_bastion" {
 
   # https://cloud.google.com/iap/docs/using-tcp-forwarding#before_you_begin
   # This is the netblock needed to forward to the instances
-  source_ranges = ["35.235.240.0/20"]
+  source_ranges           = ["35.235.240.0/20"]
   target_service_accounts = [google_service_account.bastion_host.email]
 }
 
@@ -89,15 +89,15 @@ resource "google_service_account_iam_binding" "bastion_sa_user" {
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  for_each  = toset(compact(concat(
+  for_each = toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
     ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
   )))
 
-  project   = var.project
-  role      = each.key
-  member   = "serviceAccount:${google_service_account.bastion_host.email}"
+  project = var.project
+  role    = each.key
+  member  = "serviceAccount:${google_service_account.bastion_host.email}"
 }
 
 # If you are practicing least privilege, to enable instance level OS Login, you

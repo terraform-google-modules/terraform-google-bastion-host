@@ -75,4 +75,3 @@ resource "google_compute_instance" "priv_host_b_1" {
     enable-oslogin = "TRUE"
   }
 }
-
