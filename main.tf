@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Google LLC
+ * Copyright 2019 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,41 +20,35 @@ resource "google_service_account" "bastion_host" {
   display_name = "Service Account for Bastion"
 }
 
-# NOTE: Use the terraform-google-vm module once Shielded VMs are supported
-# https://github.com/terraform-google-modules/terraform-google-vm/pull/38
-resource "google_compute_instance" "bastion_vm" {
-  project      = var.project
-  zone         = var.zone
-  name         = var.name
-  machine_type = var.machine_type
-  labels       = var.labels
+module "instance_template" {
+  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  version = "1.1.0"
 
-  boot_disk {
-    initialize_params {
-      image = var.image
-    }
+  project_id   = var.project
+  machine_type = var.machine_type
+  subnetwork   = var.subnet
+  service_account = {
+    email  = google_service_account.bastion_host.email
+    scopes = ["cloud-platform"]
   }
-  scratch_disk {}
+  enable_shielded_vm = true
+  startup_script     = var.startup_script
+
+  metadata = {
+    enable-oslogin = "TRUE"
+  }
+}
+
+resource "google_compute_instance_from_template" "bastion_vm" {
+  name  = var.name
+  project = var.project
+  zone  = var.zone
 
   network_interface {
     subnetwork = var.subnet
   }
 
-  service_account {
-    email  = google_service_account.bastion_host.email
-    scopes = var.scopes
-  }
-
-  metadata_startup_script = var.startup_script
-  metadata = {
-    enable-oslogin = "TRUE"
-  }
-
-  shielded_instance_config {
-    enable_secure_boot          = var.shielded_vm
-    enable_vtpm                 = var.shielded_vm
-    enable_integrity_monitoring = var.shielded_vm
-  }
+  source_instance_template = module.instance_template.self_link
 }
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
@@ -77,7 +71,7 @@ resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
   provider = "google-beta"
   project  = var.project
   zone     = var.zone
-  instance = google_compute_instance.bastion_vm.name
+  instance = google_compute_instance_from_template.bastion_vm.name
   role     = "roles/iap.tunnelResourceAccessor"
   members  = var.members
 }
