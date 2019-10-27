@@ -52,7 +52,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
 }
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
-  project = var.project
+  project = var.host_project != "" ? var.host_project : var.project
   name    = "allow-ssh-from-iap-to-tunnel"
   network = var.network
 
@@ -69,7 +69,7 @@ resource "google_compute_firewall" "allow_from_iap_to_bastion" {
 
 resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
   provider = "google-beta"
-  project  = var.project
+  project = var.host_project != "" ? var.host_project : var.project
   zone     = var.zone
   instance = google_compute_instance_from_template.bastion_vm.name
   role     = "roles/iap.tunnelResourceAccessor"
