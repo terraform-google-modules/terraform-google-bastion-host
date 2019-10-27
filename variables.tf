@@ -51,7 +51,7 @@ variable "project" {
 
 variable "host_project" {
   description = "The network host project ID"
-  default = ""
+  default     = ""
 }
 
 variable "region" {
