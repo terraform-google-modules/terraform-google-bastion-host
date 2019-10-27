@@ -49,6 +49,11 @@ variable "project" {
   description = "The project ID to deploy to"
 }
 
+variable "host_project" {
+  description = "The network host project ID"
+  default     = ""
+}
+
 variable "region" {
   description = "The primary region where the bastion host will live"
   default     = "us-central1"
