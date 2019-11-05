@@ -29,7 +29,7 @@ module "instance_template" {
   subnetwork   = var.subnet
   service_account = {
     email  = google_service_account.bastion_host.email
-    scopes = ["cloud-platform"]
+    scopes = var.scopes
   }
   enable_shielded_vm = true
   startup_script     = var.startup_script
