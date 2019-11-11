@@ -31,8 +31,10 @@ module "instance_template" {
     email  = google_service_account.bastion_host.email
     scopes = var.scopes
   }
-  enable_shielded_vm = true
-  startup_script     = var.startup_script
+  enable_shielded_vm   = var.shielded_vm
+  source_image_family  = var.image_family
+  source_image_project = var.image_project
+  startup_script       = var.startup_script
 
   metadata = {
     enable-oslogin = "TRUE"

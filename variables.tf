@@ -14,9 +14,14 @@
  * limitations under the License.
  */
 
-variable "image" {
-  description = "GCE image on which to base the Bastion. This image is supported by Shielded VM"
-  default     = "gce-uefi-images/centos-7"
+variable "image_family" {
+  description = "Source image family for the Bastion."
+  default     = "centos-7"
+}
+
+variable "image_project" {
+  description = "Project where the source image for the Bastion comes from"
+  default     = "gce-uefi-images"
 }
 
 variable "labels" {
