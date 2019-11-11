@@ -40,9 +40,9 @@ module "instance_template" {
 }
 
 resource "google_compute_instance_from_template" "bastion_vm" {
-  name  = var.name
+  name    = var.name
   project = var.project
-  zone  = var.zone
+  zone    = var.zone
 
   network_interface {
     subnetwork = var.subnet

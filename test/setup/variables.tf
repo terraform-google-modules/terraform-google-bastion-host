@@ -13,10 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-terraform {
-  required_version = "~> 0.12"
-  required_providers {
-    google      = "~> 2.17"
-    google-beta = "~> 2.17"
-  }
+variable "org_id" {
+  description = "The numeric organization id"
+}
+
+variable "folder_id" {
+  description = "The folder to deploy in"
+}
+
+variable "billing_account" {
+  description = "The billing account id associated with the project, e.g. XXXXXX-YYYYYY-ZZZZZZ"
 }

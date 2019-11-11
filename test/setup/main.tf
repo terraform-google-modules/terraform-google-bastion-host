@@ -13,10 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-terraform {
-  required_version = "~> 0.12"
-  required_providers {
-    google      = "~> 2.17"
-    google-beta = "~> 2.17"
-  }
+
+module "project_ci" {
+  source  = "terraform-google-modules/project-factory/google"
+  version = "~> 3.0"
+
+  name              = "ci-bastion-module"
+  random_project_id = true
+  org_id            = var.org_id
+  folder_id         = var.folder_id
+  billing_account   = var.billing_account
+
+  activate_apis = [
+    "cloudresourcemanager.googleapis.com",
+    "serviceusage.googleapis.com",
+    "compute.googleapis.com",
+    "iam.googleapis.com",
+    "oslogin.googleapis.com",
+    "iap.googleapis.com",
+  ]
 }

@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-terraform {
-  required_version = "~> 0.12"
-  required_providers {
-    google      = "~> 2.17"
-    google-beta = "~> 2.17"
-  }
+
+output "project_id" {
+  value = var.project_id
 }
+
