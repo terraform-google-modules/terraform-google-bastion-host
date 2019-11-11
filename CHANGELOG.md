@@ -10,6 +10,7 @@ and this project adheres to
 ## [Unreleased]
 
 ### Fixed
+- Fixed bug where `image` and `shielded_vm` vars could not be set
 ### [0.1.0] - 2019-08-02
 
 - Initial release
