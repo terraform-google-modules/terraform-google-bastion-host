@@ -104,7 +104,7 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
   for_each = toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
-    ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
+    ["projects/${var.project}/roles/${local.temp_role_id}"]
   )))
 
   project = var.project
