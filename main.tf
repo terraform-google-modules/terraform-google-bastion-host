@@ -28,7 +28,7 @@ locals {
     local.base_role_id,
     random_id.random_role_id_suffix.hex,
   ) : local.base_role_id
-  bastion_roles = toset(compact(concat(
+  bastion_roles = distinct(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
     ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
@@ -110,7 +110,7 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
   count = local.bastion_roles_count
 
   project = var.project
-  role    = local.bastion_roles[count.index]
+  role    = element(local.bastion_roles, count.index)
   member  = "serviceAccount:${google_service_account.bastion_host.email}"
 }
 
