@@ -33,7 +33,7 @@ locals {
     var.service_account_roles_supplemental,
     ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
   )))
-  bastion_roles_count = var.service_account_roles_count + var.service_account_roles_supplemental + 1
+  bastion_roles_count = var.service_account_roles_count + var.service_account_roles_supplemental_count + 1
 }
 
 resource "google_service_account" "bastion_host" {
