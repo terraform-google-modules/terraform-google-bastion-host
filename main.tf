@@ -24,7 +24,7 @@ resource "random_id" "random_role_id_suffix" {
 locals {
   base_role_id = "osLoginProjectGet"
   temp_role_id = var.random_role_id ? format(
-    "%s-%s",
+    "%s_%s",
     local.base_role_id,
     random_id.random_role_id_suffix.hex,
   ) : local.base_role_id
