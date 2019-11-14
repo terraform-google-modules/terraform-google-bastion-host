@@ -100,3 +100,10 @@ variable "zone" {
   description = "The primary zone where the bastion host will live"
   default     = "us-central1-a"
 }
+
+variable "random_role_id" {
+  description = "Enables role random id generation."
+  type        = bool
+  default     = false
+}
+
