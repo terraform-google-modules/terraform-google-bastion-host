@@ -14,6 +14,22 @@
  * limitations under the License.
  */
 
+/******************************************
+  Project role id suffix configuration
+ *****************************************/
+resource "random_id" "random_role_id_suffix" {
+  byte_length = 2
+}
+
+locals {
+  base_role_id = "osLoginProjectGet"
+  temp_role_id = var.random_role_id ? format(
+    "%s_%s",
+    local.base_role_id,
+    random_id.random_role_id_suffix.hex,
+  ) : local.base_role_id
+}
+
 resource "google_service_account" "bastion_host" {
   project      = var.project
   account_id   = "bastion"
@@ -35,6 +51,8 @@ module "instance_template" {
   source_image_family  = var.image_family
   source_image_project = var.image_project
   startup_script       = var.startup_script
+
+  tags = var.tags
 
   metadata = {
     enable-oslogin = "TRUE"
@@ -88,7 +106,6 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
   for_each = toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
-    ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
   )))
 
   project = var.project
@@ -101,8 +118,15 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
 # predefined roles grant additional permissions that aren't needed
 resource "google_project_iam_custom_role" "compute_os_login_viewer" {
   project     = var.project
-  role_id     = "osLoginProjectGet"
+  role_id     = local.temp_role_id
   title       = "OS Login Project Get Role"
   description = "From Terraform: iap-bastion module custom role for more fine grained scoping of permissions"
   permissions = ["compute.projects.get"]
 }
+
+resource "google_project_iam_member" "bastion_oslogin_bindings" {
+  project = var.project
+  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"
+  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+}
+

@@ -24,6 +24,12 @@ variable "image_project" {
   default     = "gce-uefi-images"
 }
 
+variable "tags" {
+  type        = list(string)
+  description = "Network tags, provided as a list"
+  default     = []
+}
+
 variable "labels" {
   description = "Key-value map of labels to assign to the bastion host"
   type        = "map"
@@ -78,6 +84,7 @@ variable "service_account_roles" {
     "roles/compute.osLogin",
   ]
 }
+
 variable "service_account_roles_supplemental" {
   description = "An additional list of roles to assign to the bastion if desired"
   default     = []
@@ -100,3 +107,10 @@ variable "zone" {
   description = "The primary zone where the bastion host will live"
   default     = "us-central1-a"
 }
+
+variable "random_role_id" {
+  description = "Enables role random id generation."
+  type        = bool
+  default     = true
+}
+
