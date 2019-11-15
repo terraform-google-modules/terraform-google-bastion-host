@@ -28,12 +28,11 @@ locals {
     local.base_role_id,
     random_id.random_role_id_suffix.hex,
   ) : local.base_role_id
-  bastion_roles = distinct(compact(concat(
+  bastion_roles = toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
-    ["projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"]
   )))
-  bastion_roles_count = var.service_account_roles_count + var.service_account_roles_supplemental_count + 1
+  bastion_roles_count = var.service_account_roles_count + var.service_account_roles_supplemental_count
 }
 
 resource "google_service_account" "bastion_host" {
@@ -57,6 +56,8 @@ module "instance_template" {
   source_image_family  = var.image_family
   source_image_project = var.image_project
   startup_script       = var.startup_script
+
+  tags = var.tags
 
   metadata = {
     enable-oslogin = "TRUE"
@@ -107,10 +108,12 @@ resource "google_service_account_iam_binding" "bastion_sa_user" {
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  count = local.bastion_roles_count
+  # count = local.bastion_roles_count
+  for_each = local.bastion_roles
 
   project = var.project
-  role    = element(local.bastion_roles, count.index)
+  role    = each.value
+  # role    = element(local.bastion_roles, count.index)
   member  = "serviceAccount:${google_service_account.bastion_host.email}"
 }
 
@@ -124,3 +127,10 @@ resource "google_project_iam_custom_role" "compute_os_login_viewer" {
   description = "From Terraform: iap-bastion module custom role for more fine grained scoping of permissions"
   permissions = ["compute.projects.get"]
 }
+
+resource "google_project_iam_member" "bastion_oslogin_bindings" {
+  project = var.project
+  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"
+  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+}
+
