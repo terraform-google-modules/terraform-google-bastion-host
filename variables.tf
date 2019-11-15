@@ -111,6 +111,6 @@ variable "zone" {
 variable "random_role_id" {
   description = "Enables role random id generation."
   type        = bool
-  default     = false
+  default     = true
 }
 
