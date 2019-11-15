@@ -85,19 +85,9 @@ variable "service_account_roles" {
   ]
 }
 
-variable "service_account_roles_count" {
-  description = "Number of roles in service_account_roles list"
-  default     = 4
-}
-
 variable "service_account_roles_supplemental" {
   description = "An additional list of roles to assign to the bastion if desired"
   default     = []
-}
-
-variable "service_account_roles_supplemental_count" {
-  description = "Number of roles in service_account_roles_supplemental"
-  default     = 0
 }
 
 variable "shielded_vm" {
