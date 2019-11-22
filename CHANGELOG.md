@@ -9,6 +9,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.0] - 2019-11-22
+
 ### Fixed
 - **Breaking**: Fixed issue with recreating custom roles by appending a random ID. Existing users can set `random_role_id` to `false` to avoid recreating the custom role. [#16]
 
@@ -25,9 +27,9 @@ and this project adheres to
 
 - Initial release
 
-[Unreleased]: https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v0.2.0...HEAD
-
-[0.2.0]: https://github.com/terraform-google-modules/terraform-google-bastion-host/releases/tag/v0.1.0...v0.2.0
+[Unreleased]: https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v0.2.0...v1.0.0
+[0.2.0]: https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/terraform-google-modules/terraform-google-bastion-host/releases/tag/v0.1.0
 
 [#16]: https://github.com/terraform-google-modules/terraform-google-bastion-host/pull/16
