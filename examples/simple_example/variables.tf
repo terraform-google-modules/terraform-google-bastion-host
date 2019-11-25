@@ -17,7 +17,9 @@
 variable "members" {
   default = []
 }
-variable "project" {}
+variable "project" {
+  type = "string"
+}
 
 variable "region" {
   default = "us-west1"

@@ -68,3 +68,17 @@ gcloud compute ssh bastion-vm --ssh-flag="-A" --command "ssh priv-host-a-1" -- -
 
 
 You can also try SSHing to the other host, priv-host-a-2. This should work. Try sshing to the B host, (priv-host-b-2) should fail. Try using user B, get another user to follow above steps. If you have access to a test account, you can use that as well, but make sure to backup the ssh keys from the steps above.
+
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|:----:|:-----:|:-----:|
+| network | Self link for the VPC network | string | n/a | yes |
+| project | The ID of the project in which to provision resources. | string | n/a | yes |
+| subnet | Self link for the Subnet within var.network | string | n/a | yes |
+| user\_a | User in the IAM policy format of user:{email} | string | n/a | yes |
+| user\_b | User in the IAM policy format of user:{email} | string | n/a | yes |
+| zone |  | string | `"us-west1-a"` | no |
+
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
