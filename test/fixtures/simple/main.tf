@@ -23,4 +23,3 @@ module "iap_bastion_example" {
     "serviceAccount:${var.service_account.email}",
   ]
 }
-
