@@ -35,9 +35,9 @@ External IP address was not found; defaulting to using IAP tunneling.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| members |  | list | `<list>` | no |
-| project |  | string | n/a | yes |
-| region |  | string | `"us-west1"` | no |
-| zone |  | string | `"us-west1-a"` | no |
+| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | list | `<list>` | no |
+| project | Project ID where the bastion will run | string | n/a | yes |
+| region | Region where the bastion will run | string | `"us-west1"` | no |
+| zone | Zone where they bastion will run | string | `"us-west1-a"` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

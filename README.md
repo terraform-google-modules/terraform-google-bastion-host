@@ -75,7 +75,7 @@ provision a project with the necessary APIs enabled.
 | scopes | List of scopes to attach to the bastion host | list | `<list>` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | list | `<list>` | no |
 | service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list | `<list>` | no |
-| shielded\_vm |  | string | `"true"` | no |
+| shielded\_vm | Enable shielded VM on the bastion host (recommended) | string | `"true"` | no |
 | startup\_script | Render a startup script with a template. | string | `""` | no |
 | subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | string | n/a | yes |
 | zone | The primary zone where the bastion host will live | string | `"us-central1-a"` | no |

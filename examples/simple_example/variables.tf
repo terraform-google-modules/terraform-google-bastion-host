@@ -15,16 +15,21 @@
  */
 
 variable "members" {
-  default = []
+  description = "List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email}"
+  default     = []
 }
+
 variable "project" {
-  type = "string"
+  description = "Project ID where the bastion will run"
+  type        = "string"
 }
 
 variable "region" {
-  default = "us-west1"
+  description = "Region where the bastion will run"
+  default     = "us-west1"
 }
 
 variable "zone" {
-  default = "us-west1-a"
+  description = "Zone where they bastion will run"
+  default     = "us-west1-a"
 }

@@ -84,7 +84,8 @@ variable "service_account_roles_supplemental" {
 }
 
 variable "shielded_vm" {
-  default = true
+  description = "Enable shielded VM on the bastion host (recommended)"
+  default     = true
 }
 
 variable "startup_script" {
