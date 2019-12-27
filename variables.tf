@@ -32,7 +32,7 @@ variable "tags" {
 
 variable "labels" {
   description = "Key-value map of labels to assign to the bastion host"
-  type        = "map"
+  type        = map
   default     = {}
 }
 
@@ -43,7 +43,7 @@ variable "machine_type" {
 
 variable "members" {
   description = "List of IAM resources to allow access to the bastion host"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
