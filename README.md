@@ -67,10 +67,11 @@ provision a project with the necessary APIs enabled.
 | image\_project | Project where the source image for the Bastion comes from | string | `"gce-uefi-images"` | no |
 | labels | Key-value map of labels to assign to the bastion host | map | `<map>` | no |
 | machine\_type | Instance type for the Bastion host | string | `"n1-standard-1"` | no |
-| members | List of IAM resources to allow access to the bastion host | list | `<list>` | no |
+| members | List of IAM resources to allow access to the bastion host | list(string) | `<list>` | no |
 | name | Name of the Bastion instance | string | `"bastion-vm"` | no |
 | network | Self link for the network on which the Bastion should live | string | n/a | yes |
 | project | The project ID to deploy to | string | n/a | yes |
+| random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
 | region | The primary region where the bastion host will live | string | `"us-central1"` | no |
 | scopes | List of scopes to attach to the bastion host | list | `<list>` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | list | `<list>` | no |
@@ -78,6 +79,7 @@ provision a project with the necessary APIs enabled.
 | shielded\_vm | Enable shielded VM on the bastion host (recommended) | string | `"true"` | no |
 | startup\_script | Render a startup script with a template. | string | `""` | no |
 | subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | string | n/a | yes |
+| tags | Network tags, provided as a list | list(string) | `<list>` | no |
 | zone | The primary zone where the bastion host will live | string | `"us-central1-a"` | no |
 
 ## Outputs
