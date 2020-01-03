@@ -9,6 +9,11 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [1.0.1] - 2020-01-03
+
+- Fixed deprecation warnings due to quotes
+- Added more integration tests
+
 ## [1.0.0] - 2019-11-22
 
 ### Fixed

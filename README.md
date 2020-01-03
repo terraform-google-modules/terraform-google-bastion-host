@@ -16,7 +16,7 @@ Basic usage of this module is as follows:
 ```hcl
 module "iap_bastion" {
   source = "terraform-google-modules/bastion-host/google"
-  version = 0.1.0
+  version = "1.0.1"
 
   project = var.project
   region = var.region
