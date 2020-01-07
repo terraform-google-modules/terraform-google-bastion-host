@@ -9,6 +9,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Added submodule and example for `bastion-group` [#27]
+
 ## [1.0.1] - 2020-01-03
 
 - Fixed deprecation warnings due to quotes
