@@ -62,7 +62,7 @@ provision a project with the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | string | `"true"` | no |
+| create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | string | `""` | no |
 | image\_family | Source image family for the Bastion. | string | `"centos-7"` | no |
@@ -79,7 +79,7 @@ provision a project with the necessary APIs enabled.
 | service\_account\_name | Account ID for the service account | string | `"bastion"` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | list | `<list>` | no |
 | service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list | `<list>` | no |
-| shielded\_vm | Enable shielded VM on the bastion host (recommended) | string | `"true"` | no |
+| shielded\_vm | Enable shielded VM on the bastion host (recommended) | bool | `"true"` | no |
 | startup\_script | Render a startup script with a template. | string | `""` | no |
 | subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | string | n/a | yes |
 | tags | Network tags, provided as a list | list(string) | `<list>` | no |

@@ -102,6 +102,7 @@ variable "service_account_name" {
 variable "shielded_vm" {
   description = "Enable shielded VM on the bastion host (recommended)"
   default     = true
+  type        = bool
 }
 
 variable "startup_script" {

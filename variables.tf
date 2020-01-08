@@ -27,6 +27,7 @@ variable "image_project" {
 variable "create_instance_from_template" {
   description = "Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG"
   default     = true
+  type        = bool
 }
 
 
@@ -104,6 +105,7 @@ variable "service_account_name" {
 variable "shielded_vm" {
   description = "Enable shielded VM on the bastion host (recommended)"
   default     = true
+  type        = bool
 }
 
 variable "startup_script" {
