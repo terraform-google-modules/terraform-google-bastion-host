@@ -1,4 +1,4 @@
-# Copyright 2018 Google LLC
+# Copyright 2019 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,29 +13,8 @@
 # limitations under the License.
 
 ---
-driver:
-  name: terraform
-
-provisioner:
-  name: terraform
-
-platforms:
-- name: local
-
-verifier:
-  name: terraform
-  systems:
-    - name: system
-      backend: local
-
-suites:
-  - name: bastion_simple
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/simple
-  - name: bastion_group
-    driver:
-      name: terraform
-      command_timeout: 1800
-      root_module_directory: test/fixtures/bastion_group
+name: bastion_simple
+attributes:
+  - name: project_id
+    required: true
+    type: string

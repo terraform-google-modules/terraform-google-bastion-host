@@ -13,6 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+variable "target_size" {
+  description = "Number of instances to create"
+  default     = 1
+}
 
 variable "image_family" {
   description = "Source image family for the Bastion."
@@ -23,13 +27,6 @@ variable "image_project" {
   description = "Project where the source image for the Bastion comes from"
   default     = "gce-uefi-images"
 }
-
-variable "create_instance_from_template" {
-  description = "Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG"
-  default     = true
-  type        = bool
-}
-
 
 variable "tags" {
   type        = list(string)
@@ -55,8 +52,8 @@ variable "members" {
 }
 
 variable "name" {
-  description = "Name of the Bastion instance"
-  default     = "bastion-vm"
+  description = "Name prefix of bastion instances"
+  default     = "bastion"
 }
 
 variable "network" {
@@ -99,7 +96,7 @@ variable "service_account_roles_supplemental" {
 
 variable "service_account_name" {
   description = "Account ID for the service account"
-  default     = "bastion"
+  default     = "bastion-group"
 }
 
 variable "shielded_vm" {
@@ -130,5 +127,5 @@ variable "random_role_id" {
 
 variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
-  default     = "allow-ssh-from-iap-to-tunnel"
+  default     = "allow-ssh-from-iap-to-bastion-group"
 }

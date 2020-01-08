@@ -32,7 +32,7 @@ locals {
 
 resource "google_service_account" "bastion_host" {
   project      = var.project
-  account_id   = "bastion"
+  account_id   = var.service_account_name
   display_name = "Service Account for Bastion"
 }
 
@@ -60,6 +60,7 @@ module "instance_template" {
 }
 
 resource "google_compute_instance_from_template" "bastion_vm" {
+  count   = var.create_instance_from_template ? 1 : 0
   name    = var.name
   project = var.project
   zone    = var.zone
@@ -73,7 +74,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
   project = var.host_project != "" ? var.host_project : var.project
-  name    = "allow-ssh-from-iap-to-tunnel"
+  name    = var.fw_name_allow_ssh_from_iap
   network = var.network
 
   allow {
@@ -88,10 +89,11 @@ resource "google_compute_firewall" "allow_from_iap_to_bastion" {
 }
 
 resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
+  count    = var.create_instance_from_template ? 1 : 0
   provider = google-beta
   project  = var.project
   zone     = var.zone
-  instance = google_compute_instance_from_template.bastion_vm.name
+  instance = google_compute_instance_from_template.bastion_vm[0].name
   role     = "roles/iap.tunnelResourceAccessor"
   members  = var.members
 }
