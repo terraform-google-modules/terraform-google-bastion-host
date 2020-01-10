@@ -84,12 +84,12 @@ the necessary APIs enabled.
 |------|-------------|:----:|:-----:|:-----:|
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP. | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID. | string | `""` | no |
-| members | List of IAM resources to allow using the IAP tunnel. | list(string) | `<list>` | no |
-| name | Name of the instance to allow SSH from IAP. If not specified, IAP tunnel user IAM binding will not be created. | string | `""` | no |
+| instances | Names and zones of the instances to allow SSH from IAP. | object | n/a | yes |
+| members | List of IAM resources to allow using the IAP tunnel. | list(string) | n/a | yes |
 | network | Self link of the network to attach the firewall to. | string | n/a | yes |
+| network\_tags | Network tags associated with the instances to allow SSH from IAP. Exactly one of service_accounts or network_tags should be specified. | list(string) | `<list>` | no |
 | project | The project ID to deploy to. | string | n/a | yes |
-| service\_account | Service account email associated with the instance to allow SSH from IAP. | string | n/a | yes |
-| zone | Primary zone of the instance to allow SSH from IAP. | string | `"us-central1-a"` | no |
+| service\_accounts | Service account emails associated with the instances to allow SSH from IAP. Exactly one of service_accounts or network_tags should be specified. | list(string) | `<list>` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 

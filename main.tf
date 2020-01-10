@@ -79,10 +79,12 @@ module "iap_tunneling" {
   project                    = var.project
   fw_name_allow_ssh_from_iap = var.fw_name_allow_ssh_from_iap
   network                    = var.network
-  service_account            = google_service_account.bastion_host.email
-  zone                       = var.zone
-  name                       = var.create_instance_from_template ? google_compute_instance_from_template.bastion_vm[0].name : ""
-  members                    = var.members
+  service_accounts           = [google_service_account.bastion_host.email]
+  instances = var.create_instance_from_template ? [{
+    name = google_compute_instance_from_template.bastion_vm[0].name
+    zone = var.zone
+  }] : []
+  members = var.members
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {

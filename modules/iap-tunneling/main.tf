@@ -28,18 +28,19 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
   # This is the netblock needed to forward to the instances
   source_ranges = ["35.235.240.0/20"]
 
-  # Use service account instead of network tags to identify the instance to be more restrict and explict.
-  # https://cloud.google.com/vpc/docs/firewalls#service-accounts-vs-tags
-  target_service_accounts = [var.service_account]
+  target_service_accounts = length(var.service_accounts) > 0 ? var.service_accounts : null
+  target_tags             = length(var.network_tags) > 0 ? var.network_tags : null
 }
 
 resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
-  count = (var.name != "" && length(var.members) != 0) ? 1 : 0
-
   provider = google-beta
+  for_each = {
+    for i in var.instances :
+    "${i.name} ${i.zone}" => i
+  }
   project  = var.project
-  zone     = var.zone
-  instance = var.name
+  zone     = each.value.zone
+  instance = each.value.name
   role     = "roles/iap.tunnelResourceAccessor"
   members  = var.members
 }

@@ -32,22 +32,27 @@ variable "network" {
   description = "Self link of the network to attach the firewall to."
 }
 
-variable "service_account" {
-  description = "Service account email associated with the instance to allow SSH from IAP."
+variable "service_accounts" {
+  description = "Service account emails associated with the instances to allow SSH from IAP. Exactly one of service_accounts or network_tags should be specified."
+  type        = list(string)
+  default     = []
 }
 
-variable "zone" {
-  description = "Primary zone of the instance to allow SSH from IAP."
-  default     = "us-central1-a"
+variable "network_tags" {
+  description = "Network tags associated with the instances to allow SSH from IAP. Exactly one of service_accounts or network_tags should be specified."
+  type        = list(string)
+  default     = []
 }
 
-variable "name" {
-  description = "Name of the instance to allow SSH from IAP. If not specified, IAP tunnel user IAM binding will not be created."
-  default     = ""
+variable "instances" {
+  type = list(object({
+    name = string
+    zone = string
+  }))
+  description = "Names and zones of the instances to allow SSH from IAP."
 }
 
 variable "members" {
   description = "List of IAM resources to allow using the IAP tunnel."
   type        = list(string)
-  default     = []
 }
