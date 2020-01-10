@@ -9,6 +9,7 @@ and this project adheres to
 
 ## [Unreleased]
 
+## [2.0.0]
 - Added submodule and example for `bastion-group` [#27]
 
 ## [1.0.1] - 2020-01-03
