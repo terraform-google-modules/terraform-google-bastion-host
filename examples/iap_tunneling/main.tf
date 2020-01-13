@@ -14,6 +14,21 @@
  * limitations under the License.
  */
 
+resource "google_compute_network" "network" {
+  project                 = var.project
+  name                    = "test-network-iap"
+  auto_create_subnetworks = false
+}
+
+resource "google_compute_subnetwork" "subnet" {
+  project                  = var.project
+  name                     = "test-subnet-iap"
+  region                   = var.region
+  ip_cidr_range            = "10.127.0.0/20"
+  network                  = google_compute_network.network.self_link
+  private_ip_google_access = true
+}
+
 resource "google_service_account" "vm_sa" {
   project      = var.project
   account_id   = var.instance
@@ -27,7 +42,7 @@ module "instance_template" {
 
   project_id   = var.project
   machine_type = "n1-standard-1"
-  network      = "default"
+  subnetwork   = google_compute_subnetwork.subnet.self_link
   service_account = {
     email  = google_service_account.vm_sa.email
     scopes = ["cloud-platform"]
@@ -42,7 +57,7 @@ resource "google_compute_instance_from_template" "vm" {
   project = var.project
   zone    = var.zone
   network_interface {
-    network = "default"
+    subnetwork = google_compute_subnetwork.subnet.self_link
   }
   source_instance_template = module.instance_template.self_link
 }
@@ -63,10 +78,11 @@ resource "google_project_iam_member" "os_login_bindings" {
 }
 
 module "iap_tunneling" {
-  source           = "../../modules/iap-tunneling"
-  project          = var.project
-  network          = "default"
-  service_accounts = [google_service_account.vm_sa.email]
+  source                     = "../../modules/iap-tunneling"
+  fw_name_allow_ssh_from_iap = "test-allow-ssh-from-iap-to-tunnel"
+  project                    = var.project
+  network                    = google_compute_network.network.self_link
+  service_accounts           = [google_service_account.vm_sa.email]
   instances = [{
     name = google_compute_instance_from_template.vm.name
     zone = var.zone

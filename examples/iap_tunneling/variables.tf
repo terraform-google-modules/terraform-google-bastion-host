@@ -27,6 +27,12 @@ variable "instance" {
   description = "Name of the example VM instance to create and allow SSH from IAP."
 }
 
+variable "region" {
+  description = "Region to create the subnet and example VM."
+  default     = "us-west1"
+}
+
 variable "zone" {
   description = "Zone of the example VM instance to create and allow SSH from IAP."
+  default     = "us-west1-a"
 }

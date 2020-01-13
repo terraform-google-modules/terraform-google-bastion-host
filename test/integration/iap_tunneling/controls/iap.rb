@@ -35,7 +35,7 @@ control "IAP Tunneling" do
   end
 
   describe "SSH Firewall Rule" do
-    subject { command("gcloud --project #{project_id} compute firewall-rules describe allow-ssh-from-iap-to-tunnel --format json") }
+    subject { command("gcloud --project #{project_id} compute firewall-rules describe test-allow-ssh-from-iap-to-tunnel --format json") }
     its(:exit_status) { should eq 0 }
     its(:stderr) { should eq '' }
     let!(:data) { JSON.parse(subject.stdout) if subject.exit_status == 0 }

@@ -11,6 +11,7 @@ members = ["user:me@example.com"]
 project = "my-project"
 instance = "instance-1"
 zone     = "us-central1-a"
+region   = "us-central1"
 ```
 
 Run the apply
@@ -43,6 +44,7 @@ External IP address was not found; defaulting to using IAP tunneling.
 | instance | Name of the example VM instance to create and allow SSH from IAP. | string | n/a | yes |
 | members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | list(string) | n/a | yes |
 | project | Project ID where to set up the instance and IAP tunneling | string | n/a | yes |
-| zone | Zone of the example VM instance to create and allow SSH from IAP. | string | n/a | yes |
+| region | Region to create the subnet and example VM. | string | `"us-west1"` | no |
+| zone | Zone of the example VM instance to create and allow SSH from IAP. | string | `"us-west1-a"` | no |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

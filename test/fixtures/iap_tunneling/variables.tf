@@ -16,15 +16,23 @@
 
 variable "project_id" {}
 
-variable "members" {
-  description = "List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email}"
-  type        = list(string)
+variable "instance" {
+  default = "iap-test-instance"
 }
 
-variable "instance" {
-  description = "Name of the testing VM instance to create and allow SSH from IAP."
+variable "region" {
+  default = "us-west1"
 }
 
 variable "zone" {
-  description = "Zone of the example VM instance to create and allow SSH from IAP."
+  default = "us-west1-a"
+}
+
+variable "service_account" {
+  default = null
+  type = object({
+    email  = string
+    scopes = list(string)
+  })
+  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
 }

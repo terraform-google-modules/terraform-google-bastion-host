@@ -15,9 +15,12 @@
  */
 
 module "iap_bastion_example" {
-  source   = "../../../examples/iap_tunneling"
-  project  = var.project_id
-  members  = var.members
+  source  = "../../../examples/iap_tunneling"
+  project = var.project_id
+  members = [
+    "serviceAccount:${var.service_account.email}",
+  ]
   instance = var.instance
+  region   = var.region
   zone     = var.zone
 }
