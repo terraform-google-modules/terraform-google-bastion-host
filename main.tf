@@ -72,30 +72,19 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   source_instance_template = module.instance_template.self_link
 }
 
-resource "google_compute_firewall" "allow_from_iap_to_bastion" {
-  project = var.host_project != "" ? var.host_project : var.project
-  name    = var.fw_name_allow_ssh_from_iap
-  network = var.network
+module "iap_tunneling" {
+  source = "./modules/iap-tunneling"
 
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
-  }
-
-  # https://cloud.google.com/iap/docs/using-tcp-forwarding#before_you_begin
-  # This is the netblock needed to forward to the instances
-  source_ranges           = ["35.235.240.0/20"]
-  target_service_accounts = [google_service_account.bastion_host.email]
-}
-
-resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
-  count    = var.create_instance_from_template ? 1 : 0
-  provider = google-beta
-  project  = var.project
-  zone     = var.zone
-  instance = google_compute_instance_from_template.bastion_vm[0].name
-  role     = "roles/iap.tunnelResourceAccessor"
-  members  = var.members
+  host_project               = var.host_project
+  project                    = var.project
+  fw_name_allow_ssh_from_iap = var.fw_name_allow_ssh_from_iap
+  network                    = var.network
+  service_accounts           = [google_service_account.bastion_host.email]
+  instances = var.create_instance_from_template ? [{
+    name = google_compute_instance_from_template.bastion_vm[0].name
+    zone = var.zone
+  }] : []
+  members = var.members
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
