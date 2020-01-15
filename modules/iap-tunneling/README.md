@@ -19,7 +19,6 @@ module "iap_tunneling" {
 
   project                    = var.project
   network                    = var.network
-  zone                       = var.zone
   service_accounts           = [var.service_account_email]
 
   instances = [{
