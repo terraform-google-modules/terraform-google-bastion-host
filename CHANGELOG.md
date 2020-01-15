@@ -9,6 +9,8 @@ and this project adheres to
 
 ## [Unreleased]
 
+- Pulled IAP Tunnelling into separate module [#29]
+
 ## [2.0.0]
 - Added submodule and example for `bastion-group` [#27]
 
