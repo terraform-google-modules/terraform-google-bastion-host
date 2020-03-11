@@ -8,12 +8,16 @@ and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+...
+
+## [2.1.1] - 2020-03-11
+- Added type annotations to variables [#34]
 
 ## [2.1.0] - 2020-01-22
 - Bumped Google provider to 3.4
 - Pulled IAP Tunnelling into separate module [#29]
 
-## [2.0.0]
+## [2.0.0] - 2020-01-10
 - Added submodule and example for `bastion-group` [#27]
 
 ## [1.0.1] - 2020-01-03
