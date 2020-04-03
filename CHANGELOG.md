@@ -9,6 +9,12 @@ and this project adheres to
 
 ## [Unreleased]
 ...
+## [2.2.0] - 2020-04-03
+
+- Add name_prefix variable for instance template [#35]
+- Bump Google provider version to 3.15
+- Remove google-beta provider since it's no longer needed
+
 
 ## [2.1.1] - 2020-03-11
 - Added type annotations to variables [#34]

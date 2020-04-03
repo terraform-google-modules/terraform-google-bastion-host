@@ -35,7 +35,6 @@ variable "create_instance_from_template" {
   default     = true
 }
 
-
 variable "tags" {
   type = list(string)
 
@@ -70,6 +69,12 @@ variable "name" {
   default     = "bastion-vm"
 }
 
+variable "name_prefix" {
+  type = string
+
+  description = "Name prefix for instance template"
+  default     = "bastion-instance-template"
+}
 variable "network" {
   type = string
 
