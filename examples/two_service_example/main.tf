@@ -17,9 +17,6 @@
 provider "google" {
 }
 
-provider "google-beta" {
-}
-
 module "iap_bastion" {
   source  = "../.."
   project = var.project

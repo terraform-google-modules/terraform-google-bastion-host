@@ -33,7 +33,6 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
 }
 
 resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
-  provider = google-beta
   for_each = {
     for i in var.instances :
     "${i.name} ${i.zone}" => i

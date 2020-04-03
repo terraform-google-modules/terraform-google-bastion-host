@@ -47,7 +47,7 @@ similar to the following:
 
 ```
 $ curl -H "Authorization: Bearer $(gcloud auth print-access-token)" -X POST \
-https://iap.googleapis.com/v1beta1/projects/my-project/iap_tunnel/zones/us-central1-a/instances/my-instance:getIamPolicy
+https://iap.googleapis.com/v1/projects/my-project/iap_tunnel/zones/us-central1-a/instances/my-instance:getIamPolicy
 {
   "bindings": [
     {

@@ -71,6 +71,7 @@ provision a project with the necessary APIs enabled.
 | machine\_type | Instance type for the Bastion host | string | `"n1-standard-1"` | no |
 | members | List of IAM resources to allow access to the bastion host | list(string) | `<list>` | no |
 | name | Name of the Bastion instance | string | `"bastion-vm"` | no |
+| name\_prefix | Name prefix for instance template | string | `"bastion-instance-template"` | no |
 | network | Self link for the network on which the Bastion should live | string | n/a | yes |
 | project | The project ID to deploy to | string | n/a | yes |
 | random\_role\_id | Enables role random id generation. | bool | `"true"` | no |

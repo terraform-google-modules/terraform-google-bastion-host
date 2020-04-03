@@ -41,6 +41,18 @@ control "Bastion Instance" do
     end
   end
 
+  describe "Instance Template" do
+    subject { command("gcloud --project=#{project_id} compute instance-templates list --format=json") }
+    its(:exit_status) { should eq 0 }
+    its(:stderr) { should eq '' }
+    let!(:data) { JSON.parse(subject.stdout) if subject.exit_status == 0 }
+
+    it "should include the right instance prefix" do
+      template = data.select { |o| o["name"].start_with? "bastion-instance-template" }
+      expect(template.any?).to eq(true)
+    end
+  end
+
   describe "SSH Firewall Rule" do
     subject { command("gcloud --project #{project_id} compute firewall-rules describe allow-ssh-from-iap-to-tunnel --format json") }
     its(:exit_status) { should eq 0 }
