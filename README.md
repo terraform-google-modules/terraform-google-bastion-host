@@ -64,6 +64,7 @@ provision a project with the necessary APIs enabled.
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | string | `""` | no |
+| image | Source image for the Bastion. If image is not specified, image_family will be used (which is the default). | string | `""` | no |
 | image\_family | Source image family for the Bastion. | string | `"centos-7"` | no |
 | image\_project | Project where the source image for the Bastion comes from | string | `"gce-uefi-images"` | no |
 | labels | Key-value map of labels to assign to the bastion host | map | `<map>` | no |
