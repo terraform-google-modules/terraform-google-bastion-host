@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+variable "image" {
+  type = string
+
+  description = "Source image for the Bastion. If image is not specified, image_family will be used (which is the default)."
+  default     = ""
+}
+
 variable "image_family" {
   type = string
 
