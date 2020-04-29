@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [Unreleased]
 ...
+
+## [2.3.0] - 2020-04-29
+- Added image variable [#37]
+
 ## [2.2.0] - 2020-04-03
 
 - Add name_prefix variable for instance template [#35]
