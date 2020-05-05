@@ -62,6 +62,7 @@ provision a project with the necessary APIs enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
+| create\_service\_account | Whether to create the service account or not. If false, no service account is created, but the roles keep being binded | bool | `"true"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | string | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image_family will be used (which is the default). | string | `""` | no |
