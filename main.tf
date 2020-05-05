@@ -100,10 +100,10 @@ resource "google_service_account_iam_binding" "bastion_sa_user" {
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  for_each = toset(compact(concat(
+  for_each = var.create_service_account ? toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
-  )))
+  ))) : []
 
   project = var.project
   role    = each.key

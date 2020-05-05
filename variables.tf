@@ -42,6 +42,13 @@ variable "create_instance_from_template" {
   default     = true
 }
 
+variable "create_service_account" {
+  type = bool
+
+  description = "Whether to create the service account or not. If false, no service account is created, but the roles keep being binded"
+  default     = true
+}
+
 variable "tags" {
   type = list(string)
 
