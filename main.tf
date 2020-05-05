@@ -48,7 +48,7 @@ module "instance_template" {
   machine_type = var.machine_type
   subnetwork   = var.subnet
   service_account = {
-    email  = google_service_account.bastion_host.email
+    email  = local.service_account_email
     scopes = var.scopes
   }
   enable_shielded_vm   = var.shielded_vm
@@ -84,7 +84,7 @@ module "iap_tunneling" {
   project                    = var.project
   fw_name_allow_ssh_from_iap = var.fw_name_allow_ssh_from_iap
   network                    = var.network
-  service_accounts           = [google_service_account.bastion_host.email]
+  service_accounts           = [local.service_account_email]
   instances = var.create_instance_from_template ? [{
     name = google_compute_instance_from_template.bastion_vm[0].name
     zone = var.zone
@@ -94,7 +94,7 @@ module "iap_tunneling" {
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
   count              = var.create_service_account ? 1 : 0
-  service_account_id = google_service_account.bastion_host.id
+  service_account_id = local.service_account_id
   role               = "roles/iam.serviceAccountUser"
   members            = var.members
 }
@@ -107,7 +107,7 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
 
   project = var.project
   role    = each.key
-  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+  member  = "serviceAccount:${local.service_account_email}"
 }
 
 # If you are practicing least privilege, to enable instance level OS Login, you
@@ -124,6 +124,5 @@ resource "google_project_iam_custom_role" "compute_os_login_viewer" {
 resource "google_project_iam_member" "bastion_oslogin_bindings" {
   project = var.project
   role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"
-  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+  member  = "serviceAccount:${local.service_account_email}"
 }
-
