@@ -33,6 +33,7 @@ locals {
 }
 
 resource "google_service_account" "bastion_host" {
+  count        = var.create_service_account ? 1 : 0
   project      = var.project
   account_id   = var.service_account_name
   display_name = "Service Account for Bastion"
@@ -92,6 +93,7 @@ module "iap_tunneling" {
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
+  count              = var.create_service_account ? 1 : 0
   service_account_id = google_service_account.bastion_host.id
   role               = "roles/iam.serviceAccountUser"
   members            = var.members
