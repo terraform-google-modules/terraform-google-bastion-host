@@ -22,7 +22,9 @@ resource "random_id" "random_role_id_suffix" {
 }
 
 locals {
-  base_role_id = "osLoginProjectGet"
+  base_role_id          = "osLoginProjectGet"
+  service_account_email = var.create_service_account ? google_service_account.bastion_host[0].email : format("%s@%s.iam.gserviceaccount.com", var.service_account_name, var.project)
+  service_account_id    = var.create_service_account ? google_service_account.bastion_host[0].id : format("projects/%s/serviceAccounts/%s@%s.iam.gserviceaccount.com", var.project, var.service_account_name, var.project)
   temp_role_id = var.random_role_id ? format(
     "%s_%s",
     local.base_role_id,
