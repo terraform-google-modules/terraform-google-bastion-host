@@ -22,9 +22,10 @@ resource "random_id" "random_role_id_suffix" {
 }
 
 locals {
-  base_role_id          = "osLoginProjectGet"
-  service_account_email = var.create_service_account ? google_service_account.bastion_host[0].email : format("%s@%s.iam.gserviceaccount.com", var.service_account_name, var.project)
-  service_account_id    = var.create_service_account ? google_service_account.bastion_host[0].id : format("projects/%s/serviceAccounts/%s@%s.iam.gserviceaccount.com", var.project, var.service_account_name, var.project)
+  base_role_id            = "osLoginProjectGet"
+  service_account_email   = var.service_account_email == "" ? google_service_account.bastion_host[0].email : var.service_account_email
+  service_account_project = var.service_account_email != "" ? split(".", split("@", "test@arc-friday.iam.gserviceaccount.com")[1])[0] : ""
+  service_account_id      = var.service_account_email == "" ? google_service_account.bastion_host[0].id : format("projects/%s/serviceAccounts/%s@%s.iam.gserviceaccount.com", local.service_account_project, var.service_account_name, local.service_account_project)
   temp_role_id = var.random_role_id ? format(
     "%s_%s",
     local.base_role_id,
@@ -33,7 +34,7 @@ locals {
 }
 
 resource "google_service_account" "bastion_host" {
-  count        = var.create_service_account ? 1 : 0
+  count        = var.service_account_email == "" ? 1 : 0
   project      = var.project
   account_id   = var.service_account_name
   display_name = "Service Account for Bastion"
@@ -93,14 +94,14 @@ module "iap_tunneling" {
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
-  count              = var.create_service_account ? 1 : 0
+  count              = var.service_account_email == "" ? 1 : 0
   service_account_id = local.service_account_id
   role               = "roles/iam.serviceAccountUser"
   members            = var.members
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  for_each = var.create_service_account ? toset(compact(concat(
+  for_each = var.service_account_email == "" ? toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
   ))) : []
@@ -114,6 +115,7 @@ resource "google_project_iam_member" "bastion_sa_bindings" {
 # still need the compute.projects.get permission on the project level. The other
 # predefined roles grant additional permissions that aren't needed
 resource "google_project_iam_custom_role" "compute_os_login_viewer" {
+  count       = var.service_account_email == "" ? 1 : 0
   project     = var.project
   role_id     = local.temp_role_id
   title       = "OS Login Project Get Role"
@@ -122,7 +124,8 @@ resource "google_project_iam_custom_role" "compute_os_login_viewer" {
 }
 
 resource "google_project_iam_member" "bastion_oslogin_bindings" {
+  count   = var.service_account_email == "" ? 1 : 0
   project = var.project
-  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"
+  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer[0].role_id}"
   member  = "serviceAccount:${local.service_account_email}"
 }

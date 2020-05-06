@@ -42,13 +42,6 @@ variable "create_instance_from_template" {
   default     = true
 }
 
-variable "create_service_account" {
-  type = bool
-
-  description = "Whether to create the service account or not. If false, no service account is created, but the roles keep being binded"
-  default     = true
-}
-
 variable "tags" {
   type = list(string)
 
@@ -146,6 +139,13 @@ variable "service_account_name" {
 
   description = "Account ID for the service account"
   default     = "bastion"
+}
+
+variable "service_account_email" {
+  type = string
+
+  description = "If set, the resources regarding service account and its permissions won't be created. It must be an already existing service account e-mail with the roles in the variable service_account_roles associated with it."
+  default     = ""
 }
 
 variable "shielded_vm" {
