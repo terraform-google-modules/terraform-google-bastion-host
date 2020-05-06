@@ -62,7 +62,6 @@ provision a project with the necessary APIs enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
-| create\_service\_account | Whether to create the service account or not. If false, no service account is created, but the roles keep being binded | bool | `"true"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | string | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image_family will be used (which is the default). | string | `""` | no |
@@ -78,6 +77,7 @@ provision a project with the necessary APIs enabled.
 | random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
 | region | The primary region where the bastion host will live | string | `"us-central1"` | no |
 | scopes | List of scopes to attach to the bastion host | list(string) | `<list>` | no |
+| service\_account\_email | If set, the resources regarding service account and its permissions won't be created. It must be an already existing service account e-mail with the roles in the variable service_account_roles associated with it. | string | `""` | no |
 | service\_account\_name | Account ID for the service account | string | `"bastion"` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | list(string) | `<list>` | no |
 | service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list(string) | `<list>` | no |
