@@ -9,6 +9,8 @@ and this project adheres to
 
 ## [Unreleased]
 ...
+## [2.4.0] - 2020-05-06
+- Service Account variable override [#38]
 
 ## [2.3.0] - 2020-04-29
 - Added image variable [#37]
