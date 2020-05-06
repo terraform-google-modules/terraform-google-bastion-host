@@ -144,7 +144,12 @@ variable "service_account_name" {
 variable "service_account_email" {
   type = string
 
-  description = "If set, the resources regarding service account and its permissions won't be created. It must be an already existing service account e-mail with the roles in the variable service_account_roles associated with it."
+  description = <<EOT
+If set, the service account and its permissions will not be created.
+The service account being passed in should have at least the roles listed
+in the `service_account_roles` variable so that logging and OS Login work
+as expected."
+EOT
   default     = ""
 }
 

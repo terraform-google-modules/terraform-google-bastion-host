@@ -22,10 +22,12 @@ resource "random_id" "random_role_id_suffix" {
 }
 
 locals {
-  base_role_id            = "osLoginProjectGet"
-  service_account_email   = var.service_account_email == "" ? google_service_account.bastion_host[0].email : var.service_account_email
-  service_account_project = var.service_account_email != "" ? split(".", split("@", "test@arc-friday.iam.gserviceaccount.com")[1])[0] : ""
-  service_account_id      = var.service_account_email == "" ? google_service_account.bastion_host[0].id : format("projects/%s/serviceAccounts/%s@%s.iam.gserviceaccount.com", local.service_account_project, var.service_account_name, local.service_account_project)
+  base_role_id          = "osLoginProjectGet"
+  service_account_email = var.service_account_email == "" ? google_service_account.bastion_host[0].email : var.service_account_email
+  service_account_roles = var.service_account_email == "" ? toset(compact(concat(
+    var.service_account_roles,
+    var.service_account_roles_supplemental,
+  ))) : []
   temp_role_id = var.random_role_id ? format(
     "%s_%s",
     local.base_role_id,
@@ -95,16 +97,13 @@ module "iap_tunneling" {
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
   count              = var.service_account_email == "" ? 1 : 0
-  service_account_id = local.service_account_id
+  service_account_id = google_service_account.bastion_host[0].id
   role               = "roles/iam.serviceAccountUser"
   members            = var.members
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  for_each = var.service_account_email == "" ? toset(compact(concat(
-    var.service_account_roles,
-    var.service_account_roles_supplemental,
-  ))) : []
+  for_each = local.service_account_roles
 
   project = var.project
   role    = each.key
