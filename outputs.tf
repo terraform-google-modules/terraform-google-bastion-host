@@ -15,7 +15,7 @@
  */
 output "service_account" {
   description = "The email for the service account created for the bastion host"
-  value       = google_service_account.bastion_host.email
+  value       = local.service_account_email
 }
 
 output "hostname" {

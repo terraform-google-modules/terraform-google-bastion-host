@@ -22,7 +22,12 @@ resource "random_id" "random_role_id_suffix" {
 }
 
 locals {
-  base_role_id = "osLoginProjectGet"
+  base_role_id          = "osLoginProjectGet"
+  service_account_email = var.service_account_email == "" ? google_service_account.bastion_host[0].email : var.service_account_email
+  service_account_roles = var.service_account_email == "" ? toset(compact(concat(
+    var.service_account_roles,
+    var.service_account_roles_supplemental,
+  ))) : []
   temp_role_id = var.random_role_id ? format(
     "%s_%s",
     local.base_role_id,
@@ -31,6 +36,7 @@ locals {
 }
 
 resource "google_service_account" "bastion_host" {
+  count        = var.service_account_email == "" ? 1 : 0
   project      = var.project
   account_id   = var.service_account_name
   display_name = "Service Account for Bastion"
@@ -45,7 +51,7 @@ module "instance_template" {
   machine_type = var.machine_type
   subnetwork   = var.subnet
   service_account = {
-    email  = google_service_account.bastion_host.email
+    email  = local.service_account_email
     scopes = var.scopes
   }
   enable_shielded_vm   = var.shielded_vm
@@ -81,7 +87,7 @@ module "iap_tunneling" {
   project                    = var.project
   fw_name_allow_ssh_from_iap = var.fw_name_allow_ssh_from_iap
   network                    = var.network
-  service_accounts           = [google_service_account.bastion_host.email]
+  service_accounts           = [local.service_account_email]
   instances = var.create_instance_from_template ? [{
     name = google_compute_instance_from_template.bastion_vm[0].name
     zone = var.zone
@@ -90,26 +96,25 @@ module "iap_tunneling" {
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
-  service_account_id = google_service_account.bastion_host.id
+  count              = var.service_account_email == "" ? 1 : 0
+  service_account_id = google_service_account.bastion_host[0].id
   role               = "roles/iam.serviceAccountUser"
   members            = var.members
 }
 
 resource "google_project_iam_member" "bastion_sa_bindings" {
-  for_each = toset(compact(concat(
-    var.service_account_roles,
-    var.service_account_roles_supplemental,
-  )))
+  for_each = local.service_account_roles
 
   project = var.project
   role    = each.key
-  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+  member  = "serviceAccount:${local.service_account_email}"
 }
 
 # If you are practicing least privilege, to enable instance level OS Login, you
 # still need the compute.projects.get permission on the project level. The other
 # predefined roles grant additional permissions that aren't needed
 resource "google_project_iam_custom_role" "compute_os_login_viewer" {
+  count       = var.service_account_email == "" ? 1 : 0
   project     = var.project
   role_id     = local.temp_role_id
   title       = "OS Login Project Get Role"
@@ -118,8 +123,8 @@ resource "google_project_iam_custom_role" "compute_os_login_viewer" {
 }
 
 resource "google_project_iam_member" "bastion_oslogin_bindings" {
+  count   = var.service_account_email == "" ? 1 : 0
   project = var.project
-  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer.role_id}"
-  member  = "serviceAccount:${google_service_account.bastion_host.email}"
+  role    = "projects/${var.project}/roles/${google_project_iam_custom_role.compute_os_login_viewer[0].role_id}"
+  member  = "serviceAccount:${local.service_account_email}"
 }
-
