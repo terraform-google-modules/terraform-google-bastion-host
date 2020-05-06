@@ -77,7 +77,7 @@ provision a project with the necessary APIs enabled.
 | random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
 | region | The primary region where the bastion host will live | string | `"us-central1"` | no |
 | scopes | List of scopes to attach to the bastion host | list(string) | `<list>` | no |
-| service\_account\_email | If set, the resources regarding service account and its permissions won't be created. It must be an already existing service account e-mail with the roles in the variable service_account_roles associated with it. | string | `""` | no |
+| service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | string | `""` | no |
 | service\_account\_name | Account ID for the service account | string | `"bastion"` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | list(string) | `<list>` | no |
 | service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list(string) | `<list>` | no |
