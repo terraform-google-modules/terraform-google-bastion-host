@@ -181,3 +181,13 @@ variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
   default     = "allow-ssh-from-iap-to-tunnel"
 }
+
+variable "disk_size_gb" {
+  description = "Boot disk size in GB"
+  default = 10
+}
+
+variable "disk_type" {
+  description = "Boot disk type, can be either pd-ssd, local-ssd, or pd-standard"
+  default = "pd-standard"
+}

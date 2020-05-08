@@ -62,6 +62,8 @@ provision a project with the necessary APIs enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
+| disk\_size\_gb | Boot disk size in GB | string | `"10"` | no |
+| disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | string | `"pd-standard"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | string | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image_family will be used (which is the default). | string | `""` | no |
