@@ -184,7 +184,7 @@ variable "fw_name_allow_ssh_from_iap" {
 
 variable "disk_size_gb" {
   description = "Boot disk size in GB"
-  default = 10
+  default = 100
 }
 
 variable "disk_type" {
