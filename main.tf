@@ -49,6 +49,8 @@ module "instance_template" {
   name_prefix  = var.name_prefix
   project_id   = var.project
   machine_type = var.machine_type
+  disk_size_gb = var.disk_size_gb
+  disk_type    = var.disk_type
   subnetwork   = var.subnet
   service_account = {
     email  = local.service_account_email
