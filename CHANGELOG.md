@@ -9,6 +9,10 @@ and this project adheres to
 
 ## [Unreleased]
 ...
+
+## [2.5.0] - 2020-05-11
+- Disk size and type variable override [#39]
+
 ## [2.4.0] - 2020-05-06
 - Service Account variable override [#38]
 
