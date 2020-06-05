@@ -44,14 +44,14 @@ module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
   version = "~> 3.0"
 
-  project_id  = var.project
-  region      = var.region
-  target_size = var.target_size
-  hostname    = var.name
-  instance_template      = module.iap_bastion.instance_template
+  project_id        = var.project
+  region            = var.region
+  target_size       = var.target_size
+  hostname          = var.name
+  instance_template = module.iap_bastion.instance_template
 
   health_check = {
-    type   = "tcp"
+    type                = "tcp"
     initial_delay_sec   = 30
     check_interval_sec  = 30
     healthy_threshold   = 1
