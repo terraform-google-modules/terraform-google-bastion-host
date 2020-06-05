@@ -61,7 +61,9 @@ module "mig" {
     proxy_header        = "NONE"
     port                = 22
     request             = ""
-    request_path        = "/"
+
+    # Unused fields.
+    request_path        = ""
     host                = ""
   }
 }
