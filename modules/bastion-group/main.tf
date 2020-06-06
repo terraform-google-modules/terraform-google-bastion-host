@@ -63,8 +63,8 @@ module "mig" {
     request             = ""
 
     # Unused fields.
-    request_path        = ""
-    host                = ""
+    request_path = ""
+    host         = ""
   }
 }
 
