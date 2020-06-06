@@ -41,10 +41,8 @@ module "iap_bastion" {
 }
 
 module "mig" {
-  source = "git::https://github.com/terraform-google-modules/terraform-google-vm.git?ref=umairidris-patch-1"
-
-  #source  = "terraform-google-modules/vm/google//modules/mig"
-  #version = "~> 3.0"
+  source  = "terraform-google-modules/vm/google//modules/mig"
+  version = "~> 3.0"
 
   project_id        = var.project
   region            = var.region
