@@ -76,7 +76,6 @@ provision a project with the necessary APIs enabled.
 | network | Self link for the network on which the Bastion should live | string | n/a | yes |
 | project | The project ID to deploy to | string | n/a | yes |
 | random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
-| region | The primary region where the bastion host will live | string | `"us-central1"` | no |
 | scopes | List of scopes to attach to the bastion host | list(string) | `<list>` | no |
 | service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | string | `""` | no |
 | service\_account\_name | Account ID for the service account | string | `"bastion"` | no |
