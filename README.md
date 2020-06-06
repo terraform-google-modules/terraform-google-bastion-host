@@ -18,7 +18,6 @@ module "iap_bastion" {
   source = "terraform-google-modules/bastion-host/google"
 
   project = var.project
-  region = var.region
   zone = var.zone
   network = google_compute_network.net.self_link
   subnet = google_compute_subnetwork.net.self_link
