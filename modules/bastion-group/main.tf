@@ -26,7 +26,6 @@ module "iap_bastion" {
   network                            = var.network
   project                            = var.project
   host_project                       = var.host_project
-  region                             = var.region
   scopes                             = var.scopes
   service_account_name               = var.service_account_name
   service_account_roles              = var.service_account_roles
