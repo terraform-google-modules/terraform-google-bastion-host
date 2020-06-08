@@ -64,6 +64,42 @@ variable "project" {
   description = "The project ID to deploy to"
 }
 
+variable "health_check" {
+  description = "Health check config for the mig."
+  type        = object({
+    type                = string
+    initial_delay_sec   = number
+    check_interval_sec  = number
+    healthy_threshold   = number
+    timeout_sec         = number
+    unhealthy_threshold = number
+    response            = string
+    proxy_header        = string
+    port                = number
+    request             = string
+
+    # Unused fields.
+    request_path        = string
+    host                = string
+  })
+  default = {
+    type                = "tcp"
+    initial_delay_sec   = 30
+    check_interval_sec  = 30
+    healthy_threshold   = 1
+    timeout_sec         = 10
+    unhealthy_threshold = 5
+    response            = ""
+    proxy_header        = "NONE"
+    port                = 22
+    request             = ""
+
+    # Unused fields.
+    request_path = ""
+    host         = ""
+  }
+}
+
 variable "host_project" {
   description = "The network host project ID"
   default     = ""

@@ -47,24 +47,8 @@ module "mig" {
   region            = var.region
   target_size       = var.target_size
   hostname          = var.name
+  health_check      = var.health_check
   instance_template = module.iap_bastion.instance_template
-
-  health_check = {
-    type                = "tcp"
-    initial_delay_sec   = 30
-    check_interval_sec  = 30
-    healthy_threshold   = 1
-    timeout_sec         = 10
-    unhealthy_threshold = 5
-    response            = ""
-    proxy_header        = "NONE"
-    port                = 22
-    request             = ""
-
-    # Unused fields.
-    request_path = ""
-    host         = ""
-  }
 }
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
