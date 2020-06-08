@@ -75,6 +75,7 @@ provision a project with the necessary APIs enabled.
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-bastion-group"` | no |
+| health\_check | Health check config for the mig. | object | `<map>` | no |
 | host\_project | The network host project ID | string | `""` | no |
 | image\_family | Source image family for the Bastion. | string | `"centos-7"` | no |
 | image\_project | Project where the source image for the Bastion comes from | string | `"gce-uefi-images"` | no |

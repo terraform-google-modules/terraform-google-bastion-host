@@ -66,7 +66,7 @@ variable "project" {
 
 variable "health_check" {
   description = "Health check config for the mig."
-  type        = object({
+  type = object({
     type                = string
     initial_delay_sec   = number
     check_interval_sec  = number
@@ -79,8 +79,8 @@ variable "health_check" {
     request             = string
 
     # Unused fields.
-    request_path        = string
-    host                = string
+    request_path = string
+    host         = string
   })
   default = {
     type                = "tcp"
