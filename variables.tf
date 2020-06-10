@@ -101,13 +101,6 @@ variable "host_project" {
   default     = ""
 }
 
-variable "region" {
-  type = string
-
-  description = "The primary region where the bastion host will live"
-  default     = "us-central1"
-}
-
 variable "scopes" {
   type = list(string)
 

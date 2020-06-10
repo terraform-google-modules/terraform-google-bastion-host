@@ -26,7 +26,6 @@ module "iap_bastion" {
   network                            = var.network
   project                            = var.project
   host_project                       = var.host_project
-  region                             = var.region
   scopes                             = var.scopes
   service_account_name               = var.service_account_name
   service_account_roles              = var.service_account_roles
@@ -42,16 +41,14 @@ module "iap_bastion" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "1.3.0"
+  version = "~> 3.0"
 
-  project_id  = var.project
-  region      = var.region
-  target_size = var.target_size
-  hostname    = var.name
-  hc_port     = 22
-
-  tcp_healthcheck_enable = true
-  instance_template      = module.iap_bastion.instance_template
+  project_id        = var.project
+  region            = var.region
+  target_size       = var.target_size
+  hostname          = var.name
+  health_check      = var.health_check
+  instance_template = module.iap_bastion.instance_template
 }
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
