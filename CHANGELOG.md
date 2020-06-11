@@ -7,9 +7,6 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-...
-
 ## [2.5.0] - 2020-05-11
 - Disk size and type variable override [#39]
 
