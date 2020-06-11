@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.6.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.5.0...v2.6.0) (2020-06-11)
+
+
+### Features
+
+* update instance template version (see: [#40](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/40)) ([6dc6299](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/6dc62991daa04918e335e096f5ee4ad3a42ceff2))
+
 ## [2.5.0] - 2020-05-11
 - Disk size and type variable override [#39]
 
