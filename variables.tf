@@ -182,6 +182,12 @@ variable "fw_name_allow_ssh_from_iap" {
   default     = "allow-ssh-from-iap-to-tunnel"
 }
 
+variable "additional_ports" {
+  description = "A list of additional ports/ranges to open access to on the instances from IAP."
+  type        = list(string)
+  default     = []
+}
+
 variable "disk_size_gb" {
   description = "Boot disk size in GB"
   default     = 100

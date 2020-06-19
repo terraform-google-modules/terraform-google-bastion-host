@@ -60,6 +60,7 @@ provision a project with the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | list(string) | `<list>` | no |
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
 | disk\_size\_gb | Boot disk size in GB | string | `"100"` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | string | `"pd-standard"` | no |

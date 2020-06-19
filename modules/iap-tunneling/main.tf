@@ -21,7 +21,7 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
 
   allow {
     protocol = "tcp"
-    ports    = ["22"]
+    ports    = toset(concat(["22"], var.additional_ports))
   }
 
   # https://cloud.google.com/iap/docs/using-tcp-forwarding#before_you_begin
