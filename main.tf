@@ -87,6 +87,7 @@ module "iap_tunneling" {
 
   host_project               = var.host_project
   project                    = var.project
+  additional_ports           = var.additional_ports
   fw_name_allow_ssh_from_iap = var.fw_name_allow_ssh_from_iap
   network                    = var.network
   service_accounts           = [local.service_account_email]

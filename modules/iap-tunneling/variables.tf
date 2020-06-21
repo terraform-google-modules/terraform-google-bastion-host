@@ -56,3 +56,9 @@ variable "members" {
   description = "List of IAM resources to allow using the IAP tunnel."
   type        = list(string)
 }
+
+variable "additional_ports" {
+  description = "A list of additional ports/ranges to open access to on the instances from IAP."
+  type        = list(string)
+  default     = []
+}

@@ -86,6 +86,7 @@ the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | list(string) | `<list>` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP. | string | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID. | string | `""` | no |
 | instances | Names and zones of the instances to allow SSH from IAP. | object | n/a | yes |
