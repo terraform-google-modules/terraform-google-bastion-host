@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.7.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.6.0...v2.7.0) (2020-06-24)
+
+
+### Features
+
+* Added option to specify the fw rule name for ssh to health checks ([#45](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/45)) ([4ef9f78](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/4ef9f78297deeaf00c8d296be55e39220d5cb551))
+
 ## [2.6.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.5.0...v2.6.0) (2020-06-11)
 
 
