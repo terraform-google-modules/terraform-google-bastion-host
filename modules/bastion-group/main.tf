@@ -53,7 +53,7 @@ module "mig" {
 
 resource "google_compute_firewall" "allow_from_iap_to_bastion" {
   project = var.host_project != "" ? var.host_project : var.project
-  name    = "allow-ssh-from-health-check-cidrs"
+  name    = var.fw_name_allow_ssh_from_health_check_cidrs
   network = var.network
 
   allow {

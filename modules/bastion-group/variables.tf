@@ -161,6 +161,11 @@ variable "random_role_id" {
   default     = true
 }
 
+variable "fw_name_allow_ssh_from_health_check_cidrs" {
+  description = "Firewall rule name for allowing Health Checks"
+  default     = "allow-ssh-from-health-check-cidrs"
+}
+
 variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
   default     = "allow-ssh-from-iap-to-bastion-group"
