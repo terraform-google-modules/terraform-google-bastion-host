@@ -74,6 +74,7 @@ provision a project with the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
+| fw\_name\_allow\_ssh\_from\_health\_check\_cidrs | Firewall rule name for allowing Health Checks | string | `"allow-ssh-from-health-check-cidrs"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-bastion-group"` | no |
 | health\_check | Health check config for the mig. | object | `<map>` | no |
 | host\_project | The network host project ID | string | `""` | no |
