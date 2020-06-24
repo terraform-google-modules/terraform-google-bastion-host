@@ -16,7 +16,6 @@ Basic usage of this module is as follows:
 ```hcl
 module "bastion_group" {
   source = "terraform-google-modules/bastion-host/google//modules/bastion-group"
-  version = "1.0.1"
 
   target_size = 2
   project     = var.project
