@@ -43,7 +43,7 @@ resource "google_service_account" "bastion_host" {
 }
 
 module "instance_template" {
-  source  = "terraform-google-modules/vm/google//modules/instance_template"
+  source  = "git::https://github.com/cocktailer/terraform-google-vm.git//modules/instance_template?ref=patch-1"
   version = "~> 3.0"
 
   name_prefix  = var.name_prefix
