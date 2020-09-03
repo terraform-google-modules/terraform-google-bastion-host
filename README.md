@@ -72,6 +72,7 @@ provision a project with the necessary APIs enabled.
 | labels | Key-value map of labels to assign to the bastion host | map | `<map>` | no |
 | machine\_type | Instance type for the Bastion host | string | `"n1-standard-1"` | no |
 | members | List of IAM resources to allow access to the bastion host | list(string) | `<list>` | no |
+| metadata | Key-value map of additional metadata to assign to the instances | map(string) | `<map>` | no |
 | name | Name of the Bastion instance | string | `"bastion-vm"` | no |
 | name\_prefix | Name prefix for instance template | string | `"bastion-instance-template"` | no |
 | network | Self link for the network on which the Bastion should live | string | n/a | yes |

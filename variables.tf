@@ -197,3 +197,9 @@ variable "disk_type" {
   description = "Boot disk type, can be either pd-ssd, local-ssd, or pd-standard"
   default     = "pd-standard"
 }
+
+variable "metadata" {
+  type        = map(string)
+  description = "Key-value map of additional metadata to assign to the instances"
+  default     = {}
+}
