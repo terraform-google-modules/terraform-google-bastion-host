@@ -19,5 +19,13 @@ output "project_id" {
 }
 
 output "service_account" {
-  value = google_service_account.ci_account
+  value = {
+    email  = google_service_account.ci_account
+    scopes = ["cloud-platform"]
+  }
+}
+
+output "sa_key" {
+  sensitive = true
+  value     = google_service_account_key.ci_account.private_key
 }
