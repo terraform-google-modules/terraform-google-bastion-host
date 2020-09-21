@@ -20,7 +20,7 @@ output "project_id" {
 
 output "service_account" {
   value = {
-    email  = google_service_account.ci_account
+    email  = google_service_account.ci_account.email
     scopes = ["cloud-platform"]
   }
 }
