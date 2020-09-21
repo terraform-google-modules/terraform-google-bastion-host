@@ -18,6 +18,6 @@ output "project_id" {
   value = module.project_ci.project_id
 }
 
-output "sa_email" {
-  value = google_service_account.ci_account.email
+output "service_account" {
+  value = google_service_account.ci_account
 }
