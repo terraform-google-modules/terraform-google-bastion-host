@@ -43,4 +43,3 @@ crash.log
 **/*.tfvars
 
 credentials.json
-test/source.sh
