@@ -21,7 +21,7 @@ variable "members" {
 
 variable "project" {
   description = "Project ID where the bastion will run"
-  type        = "string"
+  type        = string
 }
 
 variable "region" {
