@@ -24,8 +24,3 @@ output "service_account" {
     scopes = ["cloud-platform"]
   }
 }
-
-output "sa_key" {
-  sensitive = true
-  value     = google_service_account_key.ci_account.private_key
-}
