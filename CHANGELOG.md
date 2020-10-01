@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.9.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.8.0...v2.9.0) (2020-10-01)
+
+
+### Features
+
+* Support terraform 0.13 ([#55](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/55)) ([0739dfb](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/0739dfb7fe0e07ea1a8b409edbcf02efa873d2a5))
+
 ## [2.8.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.7.0...v2.8.0) (2020-09-22)
 
 
