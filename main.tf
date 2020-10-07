@@ -64,9 +64,12 @@ module "instance_template" {
 
   tags = var.tags
 
-  metadata = {
-    enable-oslogin = "TRUE"
-  }
+  metadata = merge(
+    var.metadata,
+    {
+      enable-oslogin = "TRUE"
+    }
+  )
 }
 
 resource "google_compute_instance_from_template" "bastion_vm" {
