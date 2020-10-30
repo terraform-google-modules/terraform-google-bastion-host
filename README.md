@@ -39,7 +39,7 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] v0.12
+- [Terraform][terraform] >= v0.12
 - [Terraform Provider for GCP][terraform-provider-gcp]
 
 ### APIs
@@ -54,6 +54,15 @@ resources of this module:
 
 The [Project Factory module][project-factory-module] can be used to
 provision a project with the necessary APIs enabled.
+
+### Permissions
+
+This module only sets up permissions for the bastion service account, not the users who need access. To allow access, grant one of the following instance access roles.
+
+* `roles/compute.osLogin` Does not grant administrator permissions
+* `roles/compute.osAdminLogin` Grants administrator permissions.
+
+If the user does not share the same domain as the org the bastion is in, you will also need to grant that user `roles/compute.osLoginExternalUser`. This is to prevent external SSH access from being granted at the project level. See the [OS Login documentation](https://cloud.google.com/compute/docs/instances/managing-instance-access#configure_users) for more information.
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
