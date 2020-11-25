@@ -95,7 +95,7 @@ module "iap_tunneling" {
   network                    = var.network
   service_accounts           = [local.service_account_email]
   instances = var.create_instance_from_template ? [{
-    name = google_compute_instance_from_template.bastion_vm[0].name
+    name = try(google_compute_instance_from_template.bastion_vm[0].name, "")
     zone = var.zone
   }] : []
   members = var.members
