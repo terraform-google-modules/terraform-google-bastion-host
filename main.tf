@@ -46,12 +46,13 @@ module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 5.0"
 
-  name_prefix  = var.name_prefix
-  project_id   = var.project
-  machine_type = var.machine_type
-  disk_size_gb = var.disk_size_gb
-  disk_type    = var.disk_type
-  subnetwork   = var.subnet
+  name_prefix        = var.name_prefix
+  project_id         = var.project
+  machine_type       = var.machine_type
+  disk_size_gb       = var.disk_size_gb
+  disk_type          = var.disk_type
+  subnetwork         = var.subnet
+  subnetwork_project = var.host_project
   service_account = {
     email  = local.service_account_email
     scopes = var.scopes
@@ -79,7 +80,8 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   zone    = var.zone
 
   network_interface {
-    subnetwork = var.subnet
+    subnetwork         = var.subnet
+    subnetwork_project = var.host_project != "" ? var.host_project : var.project
   }
 
   source_instance_template = module.instance_template.self_link
