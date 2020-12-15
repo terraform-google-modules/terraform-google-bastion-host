@@ -63,7 +63,7 @@ module "instance_template" {
   source_image_project = var.image_project
   startup_script       = var.startup_script
 
-  tags = var.tags
+  tags   = var.tags
   labels = var.labels
 
   metadata = merge(
