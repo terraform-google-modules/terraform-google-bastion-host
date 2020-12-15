@@ -64,6 +64,7 @@ module "instance_template" {
   startup_script       = var.startup_script
 
   tags = var.tags
+  labels = var.labels
 
   metadata = merge(
     var.metadata,
