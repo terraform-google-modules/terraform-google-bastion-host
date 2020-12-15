@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+### [2.10.2](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.10.1...v2.10.2) (2020-12-15)
+
+
+### Bug Fixes
+
+* Pass host_project variable into instance_template module ([#63](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/63)) ([1c88a0c](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/1c88a0ccd58a5221e2203b2c2a21953dbdef6579))
+* pass labels into instance template ([#69](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/69)) ([c4ff7e7](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/c4ff7e72c36c506a4aa4011407653dcceb47bcc2))
+
 ### [2.10.1](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v2.10.0...v2.10.1) (2020-12-10)
 
 
