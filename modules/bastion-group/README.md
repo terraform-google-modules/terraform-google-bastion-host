@@ -72,31 +72,31 @@ provision a project with the necessary APIs enabled.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| fw\_name\_allow\_ssh\_from\_health\_check\_cidrs | Firewall rule name for allowing Health Checks | string | `"allow-ssh-from-health-check-cidrs"` | no |
-| fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-bastion-group"` | no |
-| health\_check | Health check config for the mig. | object | `<map>` | no |
-| host\_project | The network host project ID | string | `""` | no |
-| image\_family | Source image family for the Bastion. | string | `"centos-7"` | no |
-| image\_project | Project where the source image for the Bastion comes from | string | `"gce-uefi-images"` | no |
-| labels | Key-value map of labels to assign to the bastion host | map | `<map>` | no |
-| machine\_type | Instance type for the Bastion host | string | `"n1-standard-1"` | no |
-| members | List of IAM resources to allow access to the bastion host | list(string) | `<list>` | no |
-| name | Name prefix of bastion instances | string | `"bastion"` | no |
-| network | Self link for the network on which the Bastion should live | string | n/a | yes |
-| project | The project ID to deploy to | string | n/a | yes |
-| random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
-| region | The primary region where the bastion host will live | string | `"us-central1"` | no |
-| scopes | List of scopes to attach to the bastion host | list | `<list>` | no |
-| service\_account\_name | Account ID for the service account | string | `"bastion-group"` | no |
-| service\_account\_roles | List of IAM roles to assign to the service account. | list | `<list>` | no |
-| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list | `<list>` | no |
-| shielded\_vm | Enable shielded VM on the bastion host (recommended) | bool | `"true"` | no |
-| startup\_script | Render a startup script with a template. | string | `""` | no |
-| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | string | n/a | yes |
-| tags | Network tags, provided as a list | list(string) | `<list>` | no |
-| target\_size | Number of instances to create | string | `"1"` | no |
-| zone | The primary zone where the bastion host will live | string | `"us-central1-a"` | no |
+|------|-------------|------|---------|:--------:|
+| fw\_name\_allow\_ssh\_from\_health\_check\_cidrs | Firewall rule name for allowing Health Checks | `string` | `"allow-ssh-from-health-check-cidrs"` | no |
+| fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-bastion-group"` | no |
+| health\_check | Health check config for the mig. | <pre>object({<br>    type                = string<br>    initial_delay_sec   = number<br>    check_interval_sec  = number<br>    healthy_threshold   = number<br>    timeout_sec         = number<br>    unhealthy_threshold = number<br>    response            = string<br>    proxy_header        = string<br>    port                = number<br>    request             = string<br><br>    # Unused fields.<br>    request_path = string<br>    host         = string<br>  })</pre> | <pre>{<br>  "check_interval_sec": 30,<br>  "healthy_threshold": 1,<br>  "host": "",<br>  "initial_delay_sec": 30,<br>  "port": 22,<br>  "proxy_header": "NONE",<br>  "request": "",<br>  "request_path": "",<br>  "response": "",<br>  "timeout_sec": 10,<br>  "type": "tcp",<br>  "unhealthy_threshold": 5<br>}</pre> | no |
+| host\_project | The network host project ID | `string` | `""` | no |
+| image\_family | Source image family for the Bastion. | `string` | `"centos-7"` | no |
+| image\_project | Project where the source image for the Bastion comes from | `string` | `"gce-uefi-images"` | no |
+| labels | Key-value map of labels to assign to the bastion host | `map(any)` | `{}` | no |
+| machine\_type | Instance type for the Bastion host | `string` | `"n1-standard-1"` | no |
+| members | List of IAM resources to allow access to the bastion host | `list(string)` | `[]` | no |
+| name | Name prefix of bastion instances | `string` | `"bastion"` | no |
+| network | Self link for the network on which the Bastion should live | `any` | n/a | yes |
+| project | The project ID to deploy to | `any` | n/a | yes |
+| random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
+| region | The primary region where the bastion host will live | `string` | `"us-central1"` | no |
+| scopes | List of scopes to attach to the bastion host | `list` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| service\_account\_name | Account ID for the service account | `string` | `"bastion-group"` | no |
+| service\_account\_roles | List of IAM roles to assign to the service account. | `list` | <pre>[<br>  "roles/logging.logWriter",<br>  "roles/monitoring.metricWriter",<br>  "roles/monitoring.viewer",<br>  "roles/compute.osLogin"<br>]</pre> | no |
+| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | `list` | `[]` | no |
+| shielded\_vm | Enable shielded VM on the bastion host (recommended) | `bool` | `true` | no |
+| startup\_script | Render a startup script with a template. | `string` | `""` | no |
+| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | `any` | n/a | yes |
+| tags | Network tags, provided as a list | `list(string)` | `[]` | no |
+| target\_size | Number of instances to create | `number` | `1` | no |
+| zone | The primary zone where the bastion host will live | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 

@@ -40,11 +40,15 @@ External IP address was not found; defaulting to using IAP tunneling.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| instance | Name of the example VM instance to create and allow SSH from IAP. | string | n/a | yes |
-| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | list(string) | n/a | yes |
-| project | Project ID where to set up the instance and IAP tunneling | string | n/a | yes |
-| region | Region to create the subnet and example VM. | string | `"us-west1"` | no |
-| zone | Zone of the example VM instance to create and allow SSH from IAP. | string | `"us-west1-a"` | no |
+|------|-------------|------|---------|:--------:|
+| instance | Name of the example VM instance to create and allow SSH from IAP. | `any` | n/a | yes |
+| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | `list(string)` | n/a | yes |
+| project | Project ID where to set up the instance and IAP tunneling | `any` | n/a | yes |
+| region | Region to create the subnet and example VM. | `string` | `"us-west1"` | no |
+| zone | Zone of the example VM instance to create and allow SSH from IAP. | `string` | `"us-west1-a"` | no |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

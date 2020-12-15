@@ -36,7 +36,7 @@ variable "tags" {
 
 variable "labels" {
   description = "Key-value map of labels to assign to the bastion host"
-  type        = map
+  type        = map(any)
   default     = {}
 }
 

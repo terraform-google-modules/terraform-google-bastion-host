@@ -68,35 +68,35 @@ If the user does not share the same domain as the org the bastion is in, you wil
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | list(string) | `<list>` | no |
-| create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | bool | `"true"` | no |
-| disk\_size\_gb | Boot disk size in GB | string | `"100"` | no |
-| disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | string | `"pd-standard"` | no |
-| fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | string | `"allow-ssh-from-iap-to-tunnel"` | no |
-| host\_project | The network host project ID | string | `""` | no |
-| image | Source image for the Bastion. If image is not specified, image_family will be used (which is the default). | string | `""` | no |
-| image\_family | Source image family for the Bastion. | string | `"centos-7"` | no |
-| image\_project | Project where the source image for the Bastion comes from | string | `"gce-uefi-images"` | no |
-| labels | Key-value map of labels to assign to the bastion host | map | `<map>` | no |
-| machine\_type | Instance type for the Bastion host | string | `"n1-standard-1"` | no |
-| members | List of IAM resources to allow access to the bastion host | list(string) | `<list>` | no |
-| metadata | Key-value map of additional metadata to assign to the instances | map(string) | `<map>` | no |
-| name | Name of the Bastion instance | string | `"bastion-vm"` | no |
-| name\_prefix | Name prefix for instance template | string | `"bastion-instance-template"` | no |
-| network | Self link for the network on which the Bastion should live | string | n/a | yes |
-| project | The project ID to deploy to | string | n/a | yes |
-| random\_role\_id | Enables role random id generation. | bool | `"true"` | no |
-| scopes | List of scopes to attach to the bastion host | list(string) | `<list>` | no |
-| service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | string | `""` | no |
-| service\_account\_name | Account ID for the service account | string | `"bastion"` | no |
-| service\_account\_roles | List of IAM roles to assign to the service account. | list(string) | `<list>` | no |
-| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | list(string) | `<list>` | no |
-| shielded\_vm | Enable shielded VM on the bastion host (recommended) | bool | `"true"` | no |
-| startup\_script | Render a startup script with a template. | string | `""` | no |
-| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | string | n/a | yes |
-| tags | Network tags, provided as a list | list(string) | `<list>` | no |
-| zone | The primary zone where the bastion host will live | string | `"us-central1-a"` | no |
+|------|-------------|------|---------|:--------:|
+| additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | `list(string)` | `[]` | no |
+| create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | `bool` | `true` | no |
+| disk\_size\_gb | Boot disk size in GB | `number` | `100` | no |
+| disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
+| fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
+| host\_project | The network host project ID | `string` | `""` | no |
+| image | Source image for the Bastion. If image is not specified, image\_family will be used (which is the default). | `string` | `""` | no |
+| image\_family | Source image family for the Bastion. | `string` | `"centos-7"` | no |
+| image\_project | Project where the source image for the Bastion comes from | `string` | `"gce-uefi-images"` | no |
+| labels | Key-value map of labels to assign to the bastion host | `map(any)` | `{}` | no |
+| machine\_type | Instance type for the Bastion host | `string` | `"n1-standard-1"` | no |
+| members | List of IAM resources to allow access to the bastion host | `list(string)` | `[]` | no |
+| metadata | Key-value map of additional metadata to assign to the instances | `map(string)` | `{}` | no |
+| name | Name of the Bastion instance | `string` | `"bastion-vm"` | no |
+| name\_prefix | Name prefix for instance template | `string` | `"bastion-instance-template"` | no |
+| network | Self link for the network on which the Bastion should live | `string` | n/a | yes |
+| project | The project ID to deploy to | `string` | n/a | yes |
+| random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
+| scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | `string` | `""` | no |
+| service\_account\_name | Account ID for the service account | `string` | `"bastion"` | no |
+| service\_account\_roles | List of IAM roles to assign to the service account. | `list(string)` | <pre>[<br>  "roles/logging.logWriter",<br>  "roles/monitoring.metricWriter",<br>  "roles/monitoring.viewer",<br>  "roles/compute.osLogin"<br>]</pre> | no |
+| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | `list(string)` | `[]` | no |
+| shielded\_vm | Enable shielded VM on the bastion host (recommended) | `bool` | `true` | no |
+| startup\_script | Render a startup script with a template. | `string` | `""` | no |
+| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | `string` | n/a | yes |
+| tags | Network tags, provided as a list | `list(string)` | `[]` | no |
+| zone | The primary zone where the bastion host will live | `string` | `"us-central1-a"` | no |
 
 ## Outputs
 
