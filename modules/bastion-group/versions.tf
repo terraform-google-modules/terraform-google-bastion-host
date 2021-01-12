@@ -15,4 +15,21 @@
  */
 terraform {
   required_version = ">=0.13"
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
+  provider_meta "google" {
+    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.0.0"
+  }
+  provider_meta "google-beta" {
+    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.0.0"
+  }
 }

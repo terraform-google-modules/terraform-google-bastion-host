@@ -19,11 +19,11 @@ terraform {
     google = {
       source = "hashicorp/google"
     }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
     random = {
       source = "hashicorp/random"
     }
-  }
-  provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-bastion-host/v3.0.0"
   }
 }
