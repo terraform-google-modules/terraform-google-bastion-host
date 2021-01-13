@@ -73,12 +73,16 @@ You can also try SSHing to the other host, priv-host-a-2. This should work. Try 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| network | Self link for the VPC network | string | n/a | yes |
-| project | The ID of the project in which to provision resources. | string | n/a | yes |
-| subnet | Self link for the Subnet within var.network | string | n/a | yes |
-| user\_a | User in the IAM policy format of user:{email} | string | n/a | yes |
-| user\_b | User in the IAM policy format of user:{email} | string | n/a | yes |
-| zone |  | string | `"us-west1-a"` | no |
+|------|-------------|------|---------|:--------:|
+| network | Self link for the VPC network | `string` | n/a | yes |
+| project | The ID of the project in which to provision resources. | `string` | n/a | yes |
+| subnet | Self link for the Subnet within var.network | `string` | n/a | yes |
+| user\_a | User in the IAM policy format of user:{email} | `any` | n/a | yes |
+| user\_b | User in the IAM policy format of user:{email} | `any` | n/a | yes |
+| zone | n/a | `string` | `"us-west1-a"` | no |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

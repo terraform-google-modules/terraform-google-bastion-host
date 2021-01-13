@@ -47,11 +47,15 @@ bastion-host module instead.
 ## Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | list | `<list>` | no |
-| project | Project ID where the bastion will run | string | n/a | yes |
-| region | Region where the bastion will run | string | `"us-west1"` | no |
-| target\_size | Number of instances to create | string | `"2"` | no |
-| zone | Zone where they bastion will run | string | `"us-west1-a"` | no |
+|------|-------------|------|---------|:--------:|
+| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | `list` | `[]` | no |
+| project | Project ID where the bastion will run | `string` | n/a | yes |
+| region | Region where the bastion will run | `string` | `"us-west1"` | no |
+| target\_size | Number of instances to create | `number` | `2` | no |
+| zone | Zone where they bastion will run | `string` | `"us-west1-a"` | no |
+
+## Outputs
+
+No output.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

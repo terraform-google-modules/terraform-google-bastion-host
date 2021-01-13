@@ -27,7 +27,8 @@ Session.vim
 # .tfstate files
 *.tfstate
 *.tfstate.*
-
+# Terraform lock files
+**/.terraform.lock.hcl
 # Crash log files
 crash.log
 

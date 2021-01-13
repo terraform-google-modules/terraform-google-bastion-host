@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 Google LLC
+ * Copyright 2021 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ variable "tags" {
 }
 
 variable "labels" {
-  type = map
+  type = map(any)
 
   description = "Key-value map of labels to assign to the bastion host"
   default     = {}

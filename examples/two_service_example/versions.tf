@@ -13,14 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-module "iap_bastion_example" {
-  source  = "../../../examples/simple_example"
-  project = var.project_id
-  zone    = var.zone
-  region  = var.region
-  members = [
-    "serviceAccount:${var.service_account.email}",
-  ]
+terraform {
+  required_version = ">=0.13"
+  required_providers {
+    google = {
+      source = "hashicorp/google"
+    }
+    google-beta = {
+      source = "hashicorp/google-beta"
+    }
+    random = {
+      source = "hashicorp/random"
+    }
+  }
 }
-
