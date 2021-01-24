@@ -83,7 +83,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   network_interface {
     subnetwork         = var.subnet
     subnetwork_project = var.host_project != "" ? var.host_project : var.project
-    access_config = var.ephemeral_ip ? [{nat_ip="",network_tier="PREMIUM",public_ptr_domain_name=""}] : []
+    access_config      = var.ephemeral_ip ? [{ nat_ip = "", network_tier = "PREMIUM", public_ptr_domain_name = "" }] : []
   }
 
   source_instance_template = module.instance_template.self_link
