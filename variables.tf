@@ -203,3 +203,15 @@ variable "metadata" {
   description = "Key-value map of additional metadata to assign to the instances"
   default     = {}
 }
+
+variable "ephemeral_ip" {
+  type        = bool
+  description = "Set to true if an ephemeral external IP is required"
+  default     = false
+}
+
+variable "network_tier" {
+  type        = string
+  description = "Set to required network tier, either PREMIUM or STANDARD"
+  default     = "PREMIUM"
+}
