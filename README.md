@@ -73,7 +73,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | `bool` | `true` | no |
 | disk\_size\_gb | Boot disk size in GB | `number` | `100` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
-| ephemeral\_ip | Set to true to assing and ephemeral ip | `bool` | `false` | no |
+| ephemeral\_ip | Set to true if an ephemeral external IP is required | `bool` | `false` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | `string` | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image\_family will be used (which is the default). | `string` | `""` | no |
@@ -86,8 +86,8 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | name | Name of the Bastion instance | `string` | `"bastion-vm"` | no |
 | name\_prefix | Name prefix for instance template | `string` | `"bastion-instance-template"` | no |
 | network | Self link for the network on which the Bastion should live | `string` | n/a | yes |
+| network\_tier | Set to required network tier, either PREMIUM or STANDARD | `string` | `"PREMIUM"` | no |
 | project | The project ID to deploy to | `string` | n/a | yes |
-| network_tier | The network tier for external IP when ephemeral\_ip is set. Either PREMIUM or STANDARD | `string` | `"PREMIUM"` | no |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
 | scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
 | service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | `string` | `""` | no |
