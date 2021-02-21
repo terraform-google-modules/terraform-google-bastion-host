@@ -207,13 +207,13 @@ variable "metadata" {
 variable "access_configs" {
   description = "Access configs for network, nat_ip and DNS"
   type = list(object({
-    network_tier = string
-    nat_ip = string
+    network_tier           = string
+    nat_ip                 = string
     public_ptr_domain_name = string
   }))
-  default = { 
-    nat_ip=""
-    network_tier="PREMIUM"
-    public_ptr_domain_name=""
+  default = {
+    nat_ip                 = ""
+    network_tier           = "PREMIUM"
+    public_ptr_domain_name = ""
   }
 }
