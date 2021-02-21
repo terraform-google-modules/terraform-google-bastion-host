@@ -204,7 +204,13 @@ variable "metadata" {
   default     = {}
 }
 
-variable "access_configs" {
+variable "ephemeral_ip" {
+  type        = bool
+  description = "Set to true if an ephemeral external IP/DNS is required, must also set access_config if true"
+  default     = false
+}
+
+variable "access_config" {
   description = "Access configs for network, nat_ip and DNS"
   type = list(object({
     network_tier           = string
