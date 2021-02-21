@@ -217,9 +217,9 @@ variable "access_config" {
     nat_ip                 = string
     public_ptr_domain_name = string
   }))
-  default = {
-    nat_ip                 = ""
-    network_tier           = "PREMIUM"
+  default = [{
+    nat_ip                 = "",
+    network_tier           = "PREMIUM",
     public_ptr_domain_name = ""
-  }
+  }]
 }
