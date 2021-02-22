@@ -69,11 +69,12 @@ If the user does not share the same domain as the org the bastion is in, you wil
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| access\_config | Access configs for network, nat\_ip and DNS | <pre>list(object({<br>    network_tier           = string<br>    nat_ip                 = string<br>    public_ptr_domain_name = string<br>  }))</pre> | <pre>[<br>  {<br>    "nat_ip": "",<br>    "network_tier": "PREMIUM",<br>    "public_ptr_domain_name": ""<br>  }<br>]</pre> | no |
 | additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | `list(string)` | `[]` | no |
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | `bool` | `true` | no |
 | disk\_size\_gb | Boot disk size in GB | `number` | `100` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
-| ephemeral\_ip | Set to true if an ephemeral external IP is required | `bool` | `false` | no |
+| ephemeral\_ip | Set to true if an ephemeral external IP/DNS is required, must also set access\_config if true | `bool` | `false` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | `string` | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image\_family will be used (which is the default). | `string` | `""` | no |
@@ -86,7 +87,6 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | name | Name of the Bastion instance | `string` | `"bastion-vm"` | no |
 | name\_prefix | Name prefix for instance template | `string` | `"bastion-instance-template"` | no |
 | network | Self link for the network on which the Bastion should live | `string` | n/a | yes |
-| network\_tier | Set to required network tier, either PREMIUM or STANDARD | `string` | `"PREMIUM"` | no |
 | project | The project ID to deploy to | `string` | n/a | yes |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
 | scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
