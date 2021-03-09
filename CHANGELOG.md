@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v3.0.0...v3.1.0) (2021-03-09)
+
+
+### Features
+
+* Add ephemeral_ip to bastion host. ([#73](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/73)) ([c4dbeab](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/c4dbeab0ab89ef52565020821e6fd24a9c18078a))
+
 ## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v3.0.0...v3.1.0) (2021-02-23)
 
 
