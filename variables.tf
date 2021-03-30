@@ -223,3 +223,9 @@ variable "access_config" {
     public_ptr_domain_name = ""
   }]
 }
+
+variable "create_firewall_rule" {
+  type        = bool
+  description = "If we need to create the firewall rule or not."
+  default     = true
+}

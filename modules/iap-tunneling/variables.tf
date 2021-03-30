@@ -62,3 +62,9 @@ variable "additional_ports" {
   type        = list(string)
   default     = []
 }
+
+variable "create_firewall_rule" {
+  type        = bool
+  description = "If we need to create the firewall rule or not."
+  default     = true
+}

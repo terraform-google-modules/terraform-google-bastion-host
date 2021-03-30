@@ -102,7 +102,8 @@ module "iap_tunneling" {
     name = try(google_compute_instance_from_template.bastion_vm[0].name, "")
     zone = var.zone
   }] : []
-  members = var.members
+  members              = var.members
+  create_firewall_rule = var.create_firewall_rule
 }
 
 resource "google_service_account_iam_binding" "bastion_sa_user" {
