@@ -210,6 +210,12 @@ variable "ephemeral_ip" {
   default     = false
 }
 
+variable "preemptible" {
+  type        = bool
+  description = "Allow the instance to be preempted"
+  default     = false
+}
+
 variable "access_config" {
   description = "Access configs for network, nat_ip and DNS"
   type = list(object({

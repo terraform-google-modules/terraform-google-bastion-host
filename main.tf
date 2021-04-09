@@ -62,6 +62,7 @@ module "instance_template" {
   source_image_family  = var.image_family
   source_image_project = var.image_project
   startup_script       = var.startup_script
+  preemptible          = var.preemptible
 
   tags   = var.tags
   labels = var.labels

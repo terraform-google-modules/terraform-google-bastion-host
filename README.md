@@ -87,6 +87,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | name | Name of the Bastion instance | `string` | `"bastion-vm"` | no |
 | name\_prefix | Name prefix for instance template | `string` | `"bastion-instance-template"` | no |
 | network | Self link for the network on which the Bastion should live | `string` | n/a | yes |
+| preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project | The project ID to deploy to | `string` | n/a | yes |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
 | scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
