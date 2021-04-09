@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.2.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v3.1.0...v3.2.0) (2021-04-09)
+
+
+### Features
+
+* Add option for creating firewall rule. ([#82](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/82)) ([cdd37ff](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/cdd37ff566eebb3879336944bdf009e26d3fd2ff))
+* add preemptible option. ([#83](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/83)) ([7303a05](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/7303a054e5c0368cdd4e66764ed4f672dbbba832))
+
 ## [3.1.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v3.0.0...v3.1.0) (2021-02-23)
 
 

@@ -21,6 +21,6 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-bastion-host:iap-tunneling/v3.1.0"
+    module_name = "blueprints/terraform/terraform-google-bastion-host:iap-tunneling/v3.2.0"
   }
 }
