@@ -25,14 +25,14 @@ variable "image_family" {
   type = string
 
   description = "Source image family for the Bastion."
-  default     = "centos-7"
+  default     = "centos-8"
 }
 
 variable "image_project" {
   type = string
 
   description = "Project where the source image for the Bastion comes from"
-  default     = "gce-uefi-images"
+  default     = "centos-cloud"
 }
 
 variable "create_instance_from_template" {
