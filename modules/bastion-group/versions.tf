@@ -27,9 +27,9 @@ terraform {
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.2.0"
+    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.2.1"
   }
   provider_meta "google-beta" {
-    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.2.0"
+    module_name = "blueprints/terraform/terraform-google-bastion-host:bastion-group/v3.2.1"
   }
 }
