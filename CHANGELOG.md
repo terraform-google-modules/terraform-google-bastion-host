@@ -9,6 +9,9 @@ and this project adheres to
 
 ## [4.0.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v3.2.0...v4.0.0) (2021-09-10)
 
+### ⚠ BREAKING CHANGES
+
+* Update default image family and image project ([#89](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/issues/89)) ([090c0ea](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/commit/090c0ea0254cbd31434fc974f6219e2c3c3b8d86))
 
 ### Bug Fixes
 
