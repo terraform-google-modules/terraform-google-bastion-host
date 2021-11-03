@@ -1,13 +1,13 @@
 # iap-tunneling
 
-This module will create firewall rules and IAM bindings to allow TCP forwarding using
+This module will create firewall rules and IAM members to allow TCP forwarding using
 [Identity-Aware Proxy (IAP) Tunneling](https://cloud.google.com/iap/docs/using-tcp-forwarding).
 
 This module will:
 
 - Create firewall rules to allow connections from IAP's TCP forwarding IP addresses to the TCP port
 of your resource's admin service.
-- Create IAM bindings to allow IAP from specified members.
+- Create IAM members to allow IAP from specified members.
 
 ## Usage
 
@@ -42,7 +42,7 @@ NAME                          NETWORK  DIRECTION  PRIORITY  ALLOW   DENY  DISABL
 allow-ssh-from-iap-to-tunnel  default  INGRESS    1000      tcp:22        False
 ```
 
-Once the IAM bindings for IAP-secured Tunnel User is created, you can verify them with something
+Once the IAM members for IAP-secured Tunnel User is created, you can verify them with something
 similar to the following:
 
 ```

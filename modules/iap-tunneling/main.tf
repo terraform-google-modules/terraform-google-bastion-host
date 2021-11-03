@@ -33,14 +33,17 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
   target_tags             = length(var.network_tags) > 0 ? var.network_tags : null
 }
 
-resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {
+resource "google_iap_tunnel_instance_iam_member" "enable_iap" {
   for_each = {
-    for i in var.instances :
-    "${i.name} ${i.zone}" => i
+    for pair in setproduct(var.instances, var.members) :
+    "${pair[0].name} ${pair[1].zone} ${pair[1]}" => {
+      "instance" : pair[0],
+      "member" : pair[1]
+    }
   }
   project  = var.project
-  zone     = each.value.zone
-  instance = each.value.name
+  zone     = each.value.instance.zone
+  instance = each.value.instance.name
   role     = "roles/iap.tunnelResourceAccessor"
-  members  = var.members
+  member   = each.value.member
 }
