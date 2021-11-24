@@ -21,8 +21,7 @@ terraform {
       version = ">= 3.53, < 5.0"
     }
     random = {
-      source  = "hashicorp/random"
-      version = ">= 3.53, < 5.0"
+      source = "hashicorp/random"
     }
   }
   provider_meta "google" {
