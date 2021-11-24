@@ -40,7 +40,7 @@ module "instance_template" {
   source = "github.com/terraform-google-modules/terraform-google-vm.git//modules/instance_template?ref=master"
 
   #source  = "terraform-google-modules/vm/google//modules/instance_template"
-  #version = "1.1.0"
+  #version = "~> 7.3"
 
   project_id   = var.project
   machine_type = "n1-standard-1"
