@@ -25,7 +25,7 @@ variable "image_family" {
   type = string
 
   description = "Source image family for the Bastion."
-  default     = "centos-8"
+  default     = "centos-stream-9"
 }
 
 variable "image_project" {

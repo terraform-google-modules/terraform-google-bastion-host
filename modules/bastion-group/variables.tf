@@ -20,7 +20,7 @@ variable "target_size" {
 
 variable "image_family" {
   description = "Source image family for the Bastion."
-  default     = "centos-7"
+  default     = "centos-stream-9"
 }
 
 variable "image_project" {
