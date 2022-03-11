@@ -77,8 +77,8 @@ provision a project with the necessary APIs enabled.
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-bastion-group"` | no |
 | health\_check | Health check config for the mig. | <pre>object({<br>    type                = string<br>    initial_delay_sec   = number<br>    check_interval_sec  = number<br>    healthy_threshold   = number<br>    timeout_sec         = number<br>    unhealthy_threshold = number<br>    response            = string<br>    proxy_header        = string<br>    port                = number<br>    request             = string<br><br>    # Unused fields.<br>    request_path = string<br>    host         = string<br>  })</pre> | <pre>{<br>  "check_interval_sec": 30,<br>  "healthy_threshold": 1,<br>  "host": "",<br>  "initial_delay_sec": 30,<br>  "port": 22,<br>  "proxy_header": "NONE",<br>  "request": "",<br>  "request_path": "",<br>  "response": "",<br>  "timeout_sec": 10,<br>  "type": "tcp",<br>  "unhealthy_threshold": 5<br>}</pre> | no |
 | host\_project | The network host project ID | `string` | `""` | no |
-| image\_family | Source image family for the Bastion. | `string` | `"centos-stream-9"` | no |
-| image\_project | Project where the source image for the Bastion comes from | `string` | `"gce-uefi-images"` | no |
+| image\_family | Source image family for the Bastion. | `string` | `"debian-11"` | no |
+| image\_project | Project where the source image for the Bastion comes from | `string` | `"debian-cloud"` | no |
 | labels | Key-value map of labels to assign to the bastion host | `map(any)` | `{}` | no |
 | machine\_type | Instance type for the Bastion host | `string` | `"n1-standard-1"` | no |
 | members | List of IAM resources to allow access to the bastion host | `list(string)` | `[]` | no |
