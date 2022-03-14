@@ -25,14 +25,14 @@ variable "image_family" {
   type = string
 
   description = "Source image family for the Bastion."
-  default     = "centos-8"
+  default     = "debian-11"
 }
 
 variable "image_project" {
   type = string
 
   description = "Project where the source image for the Bastion comes from"
-  default     = "centos-cloud"
+  default     = "debian-cloud"
 }
 
 variable "create_instance_from_template" {

@@ -20,12 +20,12 @@ variable "target_size" {
 
 variable "image_family" {
   description = "Source image family for the Bastion."
-  default     = "centos-7"
+  default     = "debian-11"
 }
 
 variable "image_project" {
   description = "Project where the source image for the Bastion comes from"
-  default     = "gce-uefi-images"
+  default     = "debian-cloud"
 }
 
 variable "tags" {
