@@ -1,4 +1,4 @@
-package iap_tunneling
+package bastion_simple
 
 import (
 	"fmt"
@@ -10,7 +10,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestIapTunneling(t *testing.T) {
+func TestSimpleExample(t *testing.T) {
 	bpt := tft.NewTFBlueprintTest(t)
 
 	bpt.DefineVerify(func(assert *assert.Assertions) {
@@ -18,10 +18,13 @@ func TestIapTunneling(t *testing.T) {
 
 		projectId := bpt.GetStringOutput("project_id")
 
-		instance := gcloud.Runf(t, "compute instances describe iap-test-instance --zone us-west1-a --project %s", projectId)
+		instance := gcloud.Runf(t, "compute instances describe bastion-vm --zone us-west1-a --project %s", projectId)
 		assert.Equal("RUNNING", instance.Get("status").String(), "is running")
 		osLogin := utils.GetFirstMatchResult(t, instance.Get("metadata.items").Array(), "key", "enable-oslogin")
 		assert.Equal("TRUE", osLogin.Get("value").String(), "os-login is enabled")
+		for _, shieldedInstanceConfigValue := range instance.Get("shieldedInstanceConfig").Map() {
+			assert.True(shieldedInstanceConfigValue.Bool(), "should have Shielded VM enabled")
+		}
 
 		fw := gcloud.Runf(t, "compute firewall-rules describe allow-ssh-from-iap-to-tunnel --project %s", projectId)
 		assert.Equal("35.235.240.0/20", fw.Get("sourceRanges").Array()[0].String(), "has expected sourceRanges")
