@@ -28,5 +28,5 @@ output "sa_key" {
 }
 
 output "members" {
-value = ["serviceAccount:${google_service_account.ci_account.email}"]
+  value = ["serviceAccount:${google_service_account.ci_account.email}"]
 }
