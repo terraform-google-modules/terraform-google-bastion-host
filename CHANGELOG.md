@@ -7,12 +7,6 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
-
-### Changed
-
-* Renamed the `ephemeral_ip` variable to `external_ip` as it is possible to specify not only an ephemeral IP but also a static external IP.
-
 ## [4.1.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v4.0.0...v4.1.0) (2021-11-25)
 
 
