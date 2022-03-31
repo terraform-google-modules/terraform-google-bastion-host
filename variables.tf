@@ -204,9 +204,9 @@ variable "metadata" {
   default     = {}
 }
 
-variable "ephemeral_ip" {
+variable "external_ip" {
   type        = bool
-  description = "Set to true if an ephemeral external IP/DNS is required, must also set access_config if true"
+  description = "Set to true if an ephemeral or static external IP/DNS is required, must also set access_config if true"
   default     = false
 }
 

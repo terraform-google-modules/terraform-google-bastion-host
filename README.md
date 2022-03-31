@@ -75,7 +75,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | `bool` | `true` | no |
 | disk\_size\_gb | Boot disk size in GB | `number` | `100` | no |
 | disk\_type | Boot disk type, can be either pd-ssd, local-ssd, or pd-standard | `string` | `"pd-standard"` | no |
-| ephemeral\_ip | Set to true if an ephemeral external IP/DNS is required, must also set access\_config if true | `bool` | `false` | no |
+| external\_ip | Set to true if an ephemeral or static external IP/DNS is required, must also set access\_config if true | `bool` | `false` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | `string` | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image\_family will be used (which is the default). | `string` | `""` | no |
