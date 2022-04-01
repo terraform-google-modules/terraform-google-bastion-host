@@ -7,6 +7,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v4.1.0...v5.0.0) (2022-03-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* renamed the ephemeral_ip variable to external_ip (#105)
+* Update bastion image family to debian-11 (#102)
+
+### Features
+
+* Update bastion image family to debian-11 ([#102](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/102)) ([9f935eb](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/9f935eb1cc999a2c18eae148516ebd43e110cc79))
+
+
+### Bug Fixes
+
+* renamed the ephemeral_ip variable to external_ip ([#105](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/105)) ([1a63d4c](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/1a63d4ca0470ba423abb2aabe218f6c79f7c7fac))
+
 ## [4.1.0](https://www.github.com/terraform-google-modules/terraform-google-bastion-host/compare/v4.0.0...v4.1.0) (2021-11-25)
 
 
