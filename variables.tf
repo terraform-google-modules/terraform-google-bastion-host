@@ -210,6 +210,12 @@ variable "external_ip" {
   default     = false
 }
 
+variable "internal_ip" {
+  type                = string
+  descriptdescription = "The internal ip to use, if not set an address is automaticaly assigned."
+  default             = null
+}
+
 variable "preemptible" {
   type        = bool
   description = "Allow the instance to be preempted"

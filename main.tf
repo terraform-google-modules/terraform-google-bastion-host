@@ -85,6 +85,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
     subnetwork         = var.subnet
     subnetwork_project = var.host_project != "" ? var.host_project : var.project
     access_config      = var.external_ip ? var.access_config : []
+    network_ip         = var.internal_ip
   }
 
   source_instance_template = module.instance_template.self_link
