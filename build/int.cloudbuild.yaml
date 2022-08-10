@@ -23,16 +23,16 @@ steps:
   - 'TF_VAR_billing_account=$_BILLING_ACCOUNT'
 - id: create
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run all --stage init --verbose --test-dir test/integration']
+  args: ['/bin/bash', '-c', 'cft test run all --stage init --verbose']
 - id: converge
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run all --stage apply --verbose --test-dir test/integration']
+  args: ['/bin/bash', '-c', 'cft test run all --stage apply --verbose']
 - id: verify
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run all --stage verify --verbose --test-dir test/integration']
+  args: ['/bin/bash', '-c', 'cft test run all --stage verify --verbose']
 - id: destroy
   name: 'gcr.io/cloud-foundation-cicd/$_DOCKER_IMAGE_DEVELOPER_TOOLS:$_DOCKER_TAG_VERSION_DEVELOPER_TOOLS'
-  args: ['/bin/bash', '-c', 'cft test run all --stage teardown --verbose --test-dir test/integration']
+  args: ['/bin/bash', '-c', 'cft test run all --stage teardown --verbose']
 tags:
 - 'ci'
 - 'integration'
