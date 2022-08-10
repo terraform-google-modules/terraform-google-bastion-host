@@ -15,23 +15,23 @@
  */
 
 resource "google_compute_network" "network" {
-  project                 = var.project
+  project                 = var.project_id
   name                    = "test-network-iap"
   auto_create_subnetworks = false
 }
 
 resource "google_compute_subnetwork" "subnet" {
-  project                  = var.project
+  project                  = var.project_id
   name                     = "test-subnet-iap"
-  region                   = var.region
+  region                   = "us-west1"
   ip_cidr_range            = "10.127.0.0/20"
   network                  = google_compute_network.network.self_link
   private_ip_google_access = true
 }
 
 resource "google_service_account" "vm_sa" {
-  project      = var.project
-  account_id   = var.instance
+  project      = var.project_id
+  account_id   = "iap-test-instance"
   display_name = "Service Account for VM"
 }
 
@@ -40,7 +40,7 @@ module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
   version = "~> 7.3"
 
-  project_id   = var.project
+  project_id   = var.project_id
   machine_type = "n1-standard-1"
   subnetwork   = google_compute_subnetwork.subnet.self_link
   service_account = {
@@ -53,9 +53,9 @@ module "instance_template" {
 }
 
 resource "google_compute_instance_from_template" "vm" {
-  name    = var.instance
-  project = var.project
-  zone    = var.zone
+  name    = "iap-test-instance"
+  project = var.project_id
+  zone    = "us-west1-a"
   network_interface {
     subnetwork = google_compute_subnetwork.subnet.self_link
   }
@@ -72,7 +72,7 @@ resource "google_service_account_iam_binding" "sa_user" {
 
 resource "google_project_iam_member" "os_login_bindings" {
   for_each = toset(var.members)
-  project  = var.project
+  project  = var.project_id
   role     = "roles/compute.osLogin"
   member   = each.key
 }
@@ -80,12 +80,12 @@ resource "google_project_iam_member" "os_login_bindings" {
 module "iap_tunneling" {
   source                     = "../../modules/iap-tunneling"
   fw_name_allow_ssh_from_iap = "test-allow-ssh-from-iap-to-tunnel"
-  project                    = var.project
+  project                    = var.project_id
   network                    = google_compute_network.network.self_link
   service_accounts           = [google_service_account.vm_sa.email]
   instances = [{
     name = google_compute_instance_from_template.vm.name
-    zone = var.zone
+    zone = "us-west1-a"
   }]
   members = var.members
 }

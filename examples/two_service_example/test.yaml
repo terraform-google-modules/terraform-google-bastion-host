@@ -12,15 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
----
-name: iap_tunneling
-attributes:
-  - name: project_id
-    required: true
-    type: string
-  - name: instance
-    required: true
-    type: string
-  - name: zone
-    required: true
-    type: string
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintTest
+metadata:
+  name: two-service-example
+spec:
+  skip: true
