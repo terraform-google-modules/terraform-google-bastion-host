@@ -14,22 +14,6 @@
  * limitations under the License.
  */
 
-variable "project_id" {}
-
-variable "region" {
-  default = "us-west1"
+output "project_id" {
+  value = var.project_id
 }
-
-variable "zone" {
-  default = "us-west1-a"
-}
-
-variable "service_account" {
-  default = null
-  type = object({
-    email  = string
-    scopes = list(string)
-  })
-  description = "Service account to attach to the instance. See https://www.terraform.io/docs/providers/google/r/compute_instance_template.html#service_account."
-}
-

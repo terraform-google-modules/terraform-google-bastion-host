@@ -14,13 +14,6 @@
  * limitations under the License.
  */
 
-module "iap_bastion_example" {
-  source  = "../../../examples/simple_example"
-  project = var.project_id
-  zone    = var.zone
-  region  = var.region
-  members = [
-    "serviceAccount:${var.service_account.email}",
-  ]
+output "project_id" {
+  value = var.project_id
 }
-

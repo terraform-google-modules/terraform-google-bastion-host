@@ -16,20 +16,12 @@
 
 variable "members" {
   description = "List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email}"
+  type        = list(string)
   default     = []
 }
 
-variable "project" {
+variable "project_id" {
   description = "Project ID where the bastion will run"
   type        = string
 }
 
-variable "region" {
-  description = "Region where the bastion will run"
-  default     = "us-west1"
-}
-
-variable "zone" {
-  description = "Zone where they bastion will run"
-  default     = "us-west1-a"
-}
