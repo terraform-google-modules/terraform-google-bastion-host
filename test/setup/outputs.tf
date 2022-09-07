@@ -18,9 +18,15 @@ output "project_id" {
   value = module.project_ci.project_id
 }
 
-output "service_account" {
-  value = {
-    email  = google_service_account.ci_account.email
-    scopes = ["cloud-platform"]
-  }
+output "service_account_email" {
+  value = google_service_account.ci_account.email
+}
+
+output "sa_key" {
+  value     = google_service_account_key.ci_account.private_key
+  sensitive = true
+}
+
+output "members" {
+  value = ["serviceAccount:${google_service_account.ci_account.email}"]
 }

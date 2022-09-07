@@ -35,13 +35,13 @@ External IP address was not found; defaulting to using IAP tunneling.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | `list` | `[]` | no |
-| project | Project ID where the bastion will run | `string` | n/a | yes |
-| region | Region where the bastion will run | `string` | `"us-west1"` | no |
-| zone | Zone where they bastion will run | `string` | `"us-west1-a"` | no |
+| members | List of members in the standard GCP form: user:{email}, serviceAccount:{email}, group:{email} | `list(string)` | `[]` | no |
+| project\_id | Project ID where the bastion will run | `string` | n/a | yes |
 
 ## Outputs
 
-No output.
+| Name | Description |
+|------|-------------|
+| project\_id | n/a |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
