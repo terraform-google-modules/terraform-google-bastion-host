@@ -23,7 +23,7 @@ resource "random_id" "random_role_id_suffix" {
 
 locals {
   base_role_id          = "osLoginProjectGet"
-  service_account_email = var.service_account_email == "" ? google_service_account.bastion_host[0].email : var.service_account_email
+  service_account_email = var.service_account_email == "" ? try(google_service_account.bastion_host[0].email, "") : var.service_account_email
   service_account_roles = var.service_account_email == "" ? toset(compact(concat(
     var.service_account_roles,
     var.service_account_roles_supplemental,
