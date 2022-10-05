@@ -235,3 +235,9 @@ variable "create_firewall_rule" {
   description = "If we need to create the firewall rule or not."
   default     = true
 }
+
+variable "can_ip_forward" {
+  type        = bool
+  description = "If we need to enable ip forwarding"
+  default     = false
+}
