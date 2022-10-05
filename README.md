@@ -71,6 +71,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 |------|-------------|------|---------|:--------:|
 | access\_config | Access configs for network, nat\_ip and DNS | <pre>list(object({<br>    network_tier           = string<br>    nat_ip                 = string<br>    public_ptr_domain_name = string<br>  }))</pre> | <pre>[<br>  {<br>    "nat_ip": "",<br>    "network_tier": "PREMIUM",<br>    "public_ptr_domain_name": ""<br>  }<br>]</pre> | no |
 | additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | `list(string)` | `[]` | no |
+| can\_ip\_forward | If we need to enable ip forwarding | `bool` | `false` | no |
 | create\_firewall\_rule | If we need to create the firewall rule or not. | `bool` | `true` | no |
 | create\_instance\_from\_template | Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG | `bool` | `true` | no |
 | disk\_size\_gb | Boot disk size in GB | `number` | `100` | no |
