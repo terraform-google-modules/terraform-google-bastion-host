@@ -64,6 +64,7 @@ module "instance_template" {
   startup_script       = var.startup_script
   preemptible          = var.preemptible
   can_ip_forward       = var.can_ip_forward
+  access_config        = var.access_config
 
   tags   = var.tags
   labels = var.labels
@@ -86,6 +87,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
     subnetwork         = var.subnet
     subnetwork_project = var.host_project != "" ? var.host_project : var.project
     access_config      = var.external_ip ? var.access_config : []
+#    access_config      = var.external_ip != "" ? var.access_config : [{nat_ip : var.external_ip, network_tier : "PREMIUM", public_ptr_domain_name : ""}]
   }
 
   source_instance_template = module.instance_template.self_link
