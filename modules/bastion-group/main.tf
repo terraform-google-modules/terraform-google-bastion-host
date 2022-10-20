@@ -33,7 +33,7 @@ module "iap_bastion" {
   shielded_vm                        = var.shielded_vm
   startup_script                     = var.startup_script
   subnet                             = var.subnet
-  additional_network                 = var.additional_networks
+  additional_networks                = var.additional_networks
   zone                               = var.zone
   random_role_id                     = var.random_role_id
   fw_name_allow_ssh_from_iap         = var.fw_name_allow_ssh_from_iap
