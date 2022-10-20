@@ -170,3 +170,19 @@ variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
   default     = "allow-ssh-from-iap-to-bastion-group"
 }
+
+variable "additional_networks" {
+  description = "Additional network interface details for the instance template, if any."
+  default     = []
+  type = list(object({
+    network            = string
+    subnetwork         = string
+    subnetwork_project = string
+    network_ip         = string
+    access_config = list(object({
+      nat_ip       = string
+      network_tier = string
+    }))
+  }))
+}
+
