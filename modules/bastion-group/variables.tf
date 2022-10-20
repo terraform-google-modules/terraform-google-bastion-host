@@ -135,6 +135,12 @@ variable "service_account_name" {
   default     = "bastion-group"
 }
 
+variable "service_account_email" {
+  description = "If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the parent module `service_account_roles` variable so that logging and OS Login work as expected."
+  default     = ""
+  type        = string
+}
+
 variable "shielded_vm" {
   description = "Enable shielded VM on the bastion host (recommended)"
   default     = true
@@ -186,3 +192,8 @@ variable "additional_networks" {
   }))
 }
 
+variable "metadata" {
+  type        = map(string)
+  description = "Key-value map of additional metadata to assign to the instances"
+  default     = {}
+}
