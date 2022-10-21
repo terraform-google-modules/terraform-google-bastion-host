@@ -28,15 +28,18 @@ module "iap_bastion" {
   host_project                       = var.host_project
   scopes                             = var.scopes
   service_account_name               = var.service_account_name
+  service_account_email              = var.service_account_email
   service_account_roles              = var.service_account_roles
   service_account_roles_supplemental = var.service_account_roles_supplemental
   shielded_vm                        = var.shielded_vm
   startup_script                     = var.startup_script
   subnet                             = var.subnet
+  additional_networks                = var.additional_networks
   zone                               = var.zone
   random_role_id                     = var.random_role_id
   fw_name_allow_ssh_from_iap         = var.fw_name_allow_ssh_from_iap
   create_instance_from_template      = false
+  metadata                           = var.metadata
 }
 
 module "mig" {

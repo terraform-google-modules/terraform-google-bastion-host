@@ -73,6 +73,7 @@ provision a project with the necessary APIs enabled.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| additional\_networks | Additional network interface details for the instance template, if any. | <pre>list(object({<br>    network            = string<br>    subnetwork         = string<br>    subnetwork_project = string<br>    network_ip         = string<br>    access_config = list(object({<br>      nat_ip       = string<br>      network_tier = string<br>    }))<br>  }))</pre> | `[]` | no |
 | fw\_name\_allow\_ssh\_from\_health\_check\_cidrs | Firewall rule name for allowing Health Checks | `string` | `"allow-ssh-from-health-check-cidrs"` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-bastion-group"` | no |
 | health\_check | Health check config for the mig. | <pre>object({<br>    type                = string<br>    initial_delay_sec   = number<br>    check_interval_sec  = number<br>    healthy_threshold   = number<br>    timeout_sec         = number<br>    unhealthy_threshold = number<br>    response            = string<br>    proxy_header        = string<br>    port                = number<br>    request             = string<br><br>    # Unused fields.<br>    request_path = string<br>    host         = string<br>  })</pre> | <pre>{<br>  "check_interval_sec": 30,<br>  "healthy_threshold": 1,<br>  "host": "",<br>  "initial_delay_sec": 30,<br>  "port": 22,<br>  "proxy_header": "NONE",<br>  "request": "",<br>  "request_path": "",<br>  "response": "",<br>  "timeout_sec": 10,<br>  "type": "tcp",<br>  "unhealthy_threshold": 5<br>}</pre> | no |
@@ -82,12 +83,14 @@ provision a project with the necessary APIs enabled.
 | labels | Key-value map of labels to assign to the bastion host | `map(any)` | `{}` | no |
 | machine\_type | Instance type for the Bastion host | `string` | `"n1-standard-1"` | no |
 | members | List of IAM resources to allow access to the bastion host | `list(string)` | `[]` | no |
+| metadata | Key-value map of additional metadata to assign to the instances | `map(string)` | `{}` | no |
 | name | Name prefix of bastion instances | `string` | `"bastion"` | no |
 | network | Self link for the network on which the Bastion should live | `any` | n/a | yes |
 | project | The project ID to deploy to | `any` | n/a | yes |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
 | region | The primary region where the bastion host will live | `string` | `"us-central1"` | no |
 | scopes | List of scopes to attach to the bastion host | `list` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the parent module `service_account_roles` variable so that logging and OS Login work as expected. | `string` | `""` | no |
 | service\_account\_name | Account ID for the service account | `string` | `"bastion-group"` | no |
 | service\_account\_roles | List of IAM roles to assign to the service account. | `list` | <pre>[<br>  "roles/logging.logWriter",<br>  "roles/monitoring.metricWriter",<br>  "roles/monitoring.viewer",<br>  "roles/compute.osLogin"<br>]</pre> | no |
 | service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | `list` | `[]` | no |

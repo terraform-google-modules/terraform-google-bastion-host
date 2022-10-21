@@ -135,6 +135,12 @@ variable "service_account_name" {
   default     = "bastion-group"
 }
 
+variable "service_account_email" {
+  description = "If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the parent module `service_account_roles` variable so that logging and OS Login work as expected."
+  default     = ""
+  type        = string
+}
+
 variable "shielded_vm" {
   description = "Enable shielded VM on the bastion host (recommended)"
   default     = true
@@ -169,4 +175,25 @@ variable "fw_name_allow_ssh_from_health_check_cidrs" {
 variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
   default     = "allow-ssh-from-iap-to-bastion-group"
+}
+
+variable "additional_networks" {
+  description = "Additional network interface details for the instance template, if any."
+  default     = []
+  type = list(object({
+    network            = string
+    subnetwork         = string
+    subnetwork_project = string
+    network_ip         = string
+    access_config = list(object({
+      nat_ip       = string
+      network_tier = string
+    }))
+  }))
+}
+
+variable "metadata" {
+  type        = map(string)
+  description = "Key-value map of additional metadata to assign to the instances"
+  default     = {}
 }
