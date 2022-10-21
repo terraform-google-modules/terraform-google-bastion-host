@@ -80,6 +80,7 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   name    = var.name
   project = var.project
   zone    = var.zone
+  labels  = var.labels
 
   network_interface {
     subnetwork         = var.subnet
