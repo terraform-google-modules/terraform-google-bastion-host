@@ -7,6 +7,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.0.1...v5.1.0) (2022-10-29)
+
+
+### Features
+
+* apply labels to bastion instance ([#114](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/114)) ([5dab8d1](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/5dab8d17b447fdecc0d164b2b48d1ba881b44a89))
+* Optionally pass additional networks to the instance template ([#117](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/117)) ([5c601c9](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/5c601c9406a8d9066755f7fa5c4b84f934817bef))
+
+
+### Bug Fixes
+
+* **deps:** update module github.com/stretchr/testify to v1.8.1 ([#120](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/120)) ([6140420](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/6140420450097c6f5875379d2dd8ae936b2fd270))
+
 ## [5.0.1](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.0.0...v5.0.1) (2022-09-07)
 
 
