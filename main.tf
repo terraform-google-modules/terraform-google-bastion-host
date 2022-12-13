@@ -70,10 +70,10 @@ module "instance_template" {
   labels = var.labels
 
   metadata = merge(
-    var.metadata,
     {
       enable-oslogin = "TRUE"
-    }
+    },
+    var.metadata
   )
 }
 
