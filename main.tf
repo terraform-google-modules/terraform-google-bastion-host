@@ -51,6 +51,7 @@ module "instance_template" {
   machine_type        = var.machine_type
   disk_size_gb        = var.disk_size_gb
   disk_type           = var.disk_type
+  disk_labels         = var.disk_labels
   subnetwork          = var.subnet
   subnetwork_project  = var.host_project
   additional_networks = var.additional_networks

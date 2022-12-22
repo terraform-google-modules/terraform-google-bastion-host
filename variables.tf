@@ -198,6 +198,13 @@ variable "disk_type" {
   default     = "pd-standard"
 }
 
+variable "disk_labels" {
+  type = map(any)
+
+  description = "Key-value map of labels to assign to the bastion host disk"
+  default     = {}
+}
+
 variable "metadata" {
   type        = map(string)
   description = "Key-value map of additional metadata to assign to the instances"
