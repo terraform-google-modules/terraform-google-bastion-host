@@ -15,16 +15,19 @@
  */
 variable "target_size" {
   description = "Number of instances to create"
+  type        = number
   default     = 1
 }
 
 variable "image_family" {
   description = "Source image family for the Bastion."
+  type        = string
   default     = "debian-11"
 }
 
 variable "image_project" {
   description = "Project where the source image for the Bastion comes from"
+  type        = string
   default     = "debian-cloud"
 }
 
@@ -42,6 +45,7 @@ variable "labels" {
 
 variable "machine_type" {
   description = "Instance type for the Bastion host"
+  type        = string
   default     = "n1-standard-1"
 }
 
@@ -53,15 +57,18 @@ variable "members" {
 
 variable "name" {
   description = "Name prefix of bastion instances"
+  type        = string
   default     = "bastion"
 }
 
 variable "network" {
   description = "Self link for the network on which the Bastion should live"
+  type        = string
 }
 
 variable "project" {
   description = "The project ID to deploy to"
+  type        = string
 }
 
 variable "health_check" {
@@ -102,21 +109,25 @@ variable "health_check" {
 
 variable "host_project" {
   description = "The network host project ID"
+  type        = string
   default     = ""
 }
 
 variable "region" {
   description = "The primary region where the bastion host will live"
+  type        = string
   default     = "us-central1"
 }
 
 variable "scopes" {
   description = "List of scopes to attach to the bastion host"
+  type        = list(string)
   default     = ["cloud-platform"]
 }
 
 variable "service_account_roles" {
   description = "List of IAM roles to assign to the service account."
+  type        = list(string)
   default = [
     "roles/logging.logWriter",
     "roles/monitoring.metricWriter",
@@ -127,11 +138,13 @@ variable "service_account_roles" {
 
 variable "service_account_roles_supplemental" {
   description = "An additional list of roles to assign to the bastion if desired"
-  default     = []
+  type        = list(string)
+  default     = [""]
 }
 
 variable "service_account_name" {
   description = "Account ID for the service account"
+  type        = string
   default     = "bastion-group"
 }
 
@@ -149,15 +162,18 @@ variable "shielded_vm" {
 
 variable "startup_script" {
   description = "Render a startup script with a template."
+  type        = string
   default     = ""
 }
 
 variable "subnet" {
   description = "Self link for the subnet on which the Bastion should live. Can be private when using IAP"
+  type        = string
 }
 
 variable "zone" {
   description = "The primary zone where the bastion host will live"
+  type        = string
   default     = "us-central1-a"
 }
 
@@ -169,11 +185,13 @@ variable "random_role_id" {
 
 variable "fw_name_allow_ssh_from_health_check_cidrs" {
   description = "Firewall rule name for allowing Health Checks"
+  type        = string
   default     = "allow-ssh-from-health-check-cidrs"
 }
 
 variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP"
+  type        = string
   default     = "allow-ssh-from-iap-to-bastion-group"
 }
 

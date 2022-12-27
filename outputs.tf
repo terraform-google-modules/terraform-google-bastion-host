@@ -25,7 +25,7 @@ output "hostname" {
 
 output "ip_address" {
   description = "Internal IP address of the bastion host"
-  value       = try((var.create_instance_from_template ? google_compute_instance_from_template.bastion_vm[0].network_interface.0.network_ip : ""), "")
+  value       = try((var.create_instance_from_template ? google_compute_instance_from_template.bastion_vm[0].network_interface[0].network_ip : ""), "")
 }
 
 output "self_link" {

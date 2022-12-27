@@ -85,18 +85,18 @@ provision a project with the necessary APIs enabled.
 | members | List of IAM resources to allow access to the bastion host | `list(string)` | `[]` | no |
 | metadata | Key-value map of additional metadata to assign to the instances | `map(string)` | `{}` | no |
 | name | Name prefix of bastion instances | `string` | `"bastion"` | no |
-| network | Self link for the network on which the Bastion should live | `any` | n/a | yes |
-| project | The project ID to deploy to | `any` | n/a | yes |
+| network | Self link for the network on which the Bastion should live | `string` | n/a | yes |
+| project | The project ID to deploy to | `string` | n/a | yes |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
 | region | The primary region where the bastion host will live | `string` | `"us-central1"` | no |
-| scopes | List of scopes to attach to the bastion host | `list` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
+| scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
 | service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the parent module `service_account_roles` variable so that logging and OS Login work as expected. | `string` | `""` | no |
 | service\_account\_name | Account ID for the service account | `string` | `"bastion-group"` | no |
-| service\_account\_roles | List of IAM roles to assign to the service account. | `list` | <pre>[<br>  "roles/logging.logWriter",<br>  "roles/monitoring.metricWriter",<br>  "roles/monitoring.viewer",<br>  "roles/compute.osLogin"<br>]</pre> | no |
-| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | `list` | `[]` | no |
+| service\_account\_roles | List of IAM roles to assign to the service account. | `list(string)` | <pre>[<br>  "roles/logging.logWriter",<br>  "roles/monitoring.metricWriter",<br>  "roles/monitoring.viewer",<br>  "roles/compute.osLogin"<br>]</pre> | no |
+| service\_account\_roles\_supplemental | An additional list of roles to assign to the bastion if desired | `list(string)` | <pre>[<br>  ""<br>]</pre> | no |
 | shielded\_vm | Enable shielded VM on the bastion host (recommended) | `bool` | `true` | no |
 | startup\_script | Render a startup script with a template. | `string` | `""` | no |
-| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | `any` | n/a | yes |
+| subnet | Self link for the subnet on which the Bastion should live. Can be private when using IAP | `string` | n/a | yes |
 | tags | Network tags, provided as a list | `list(string)` | `[]` | no |
 | target\_size | Number of instances to create | `number` | `1` | no |
 | zone | The primary zone where the bastion host will live | `string` | `"us-central1-a"` | no |
