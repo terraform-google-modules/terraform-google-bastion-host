@@ -1,0 +1,256 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-bastion-host
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: terraform-google-bastion-host
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-bastion-host
+    sourceType: git
+  version: 5.1.0
+  actuationTool:
+    type: Terraform
+    version: '>=0.13'
+  subBlueprints:
+  - name: bastion-group
+    location: modules/bastion-group
+  - name: iap-tunneling
+    location: modules/iap-tunneling
+  examples:
+  - name: bastion_group
+    location: examples/bastion_group
+  - name: iap_tunneling
+    location: examples/iap_tunneling
+  - name: simple_example
+    location: examples/simple_example
+  - name: two_service_example
+    location: examples/two_service_example
+  variables:
+  - name: access_config
+    description: Access configs for network, nat_ip and DNS
+    type: |-
+      list(object({
+          network_tier           = string
+          nat_ip                 = string
+          public_ptr_domain_name = string
+        }))
+    default:
+    - nat_ip: ""
+      network_tier: PREMIUM
+      public_ptr_domain_name: ""
+    required: false
+  - name: additional_networks
+    description: Additional network interface details for the instance template, if any.
+    type: |-
+      list(object({
+          network            = string
+          subnetwork         = string
+          subnetwork_project = string
+          network_ip         = string
+          access_config = list(object({
+            nat_ip       = string
+            network_tier = string
+          }))
+        }))
+    default: []
+    required: false
+  - name: additional_ports
+    description: A list of additional ports/ranges to open access to on the instances from IAP.
+    type: list(string)
+    default: []
+    required: false
+  - name: create_firewall_rule
+    description: If we need to create the firewall rule or not.
+    type: bool
+    default: true
+    required: false
+  - name: create_instance_from_template
+    description: Whether to create and instance from the template or not. If false, no instance is created, but the instance template is created and usable by a MIG
+    type: bool
+    default: true
+    required: false
+  - name: disk_size_gb
+    description: Boot disk size in GB
+    type: number
+    default: 100
+    required: false
+  - name: disk_type
+    description: Boot disk type, can be either pd-ssd, local-ssd, or pd-standard
+    type: string
+    default: pd-standard
+    required: false
+  - name: external_ip
+    description: Set to true if an ephemeral or static external IP/DNS is required, must also set access_config if true
+    type: bool
+    default: false
+    required: false
+  - name: fw_name_allow_ssh_from_iap
+    description: Firewall rule name for allowing SSH from IAP
+    type: string
+    default: allow-ssh-from-iap-to-tunnel
+    required: false
+  - name: host_project
+    description: The network host project ID
+    type: string
+    default: ""
+    required: false
+  - name: image
+    description: Source image for the Bastion. If image is not specified, image_family will be used (which is the default).
+    type: string
+    default: ""
+    required: false
+  - name: image_family
+    description: Source image family for the Bastion.
+    type: string
+    default: debian-11
+    required: false
+  - name: image_project
+    description: Project where the source image for the Bastion comes from
+    type: string
+    default: debian-cloud
+    required: false
+  - name: labels
+    description: Key-value map of labels to assign to the bastion host
+    type: map(any)
+    default: {}
+    required: false
+  - name: machine_type
+    description: Instance type for the Bastion host
+    type: string
+    default: n1-standard-1
+    required: false
+  - name: members
+    description: List of IAM resources to allow access to the bastion host
+    type: list(string)
+    default: []
+    required: false
+  - name: metadata
+    description: Key-value map of additional metadata to assign to the instances
+    type: map(string)
+    default: {}
+    required: false
+  - name: name
+    description: Name of the Bastion instance
+    type: string
+    default: bastion-vm
+    required: false
+  - name: name_prefix
+    description: Name prefix for instance template
+    type: string
+    default: bastion-instance-template
+    required: false
+  - name: network
+    description: Self link for the network on which the Bastion should live
+    type: string
+    required: true
+  - name: preemptible
+    description: Allow the instance to be preempted
+    type: bool
+    default: false
+    required: false
+  - name: project
+    description: The project ID to deploy to
+    type: string
+    required: true
+  - name: random_role_id
+    description: Enables role random id generation.
+    type: bool
+    default: true
+    required: false
+  - name: scopes
+    description: List of scopes to attach to the bastion host
+    type: list(string)
+    default:
+    - cloud-platform
+    required: false
+  - name: service_account_email
+    description: If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected.
+    type: string
+    default: ""
+    required: false
+  - name: service_account_name
+    description: Account ID for the service account
+    type: string
+    default: bastion
+    required: false
+  - name: service_account_roles
+    description: List of IAM roles to assign to the service account.
+    type: list(string)
+    default:
+    - roles/logging.logWriter
+    - roles/monitoring.metricWriter
+    - roles/monitoring.viewer
+    - roles/compute.osLogin
+    required: false
+  - name: service_account_roles_supplemental
+    description: An additional list of roles to assign to the bastion if desired
+    type: list(string)
+    default: []
+    required: false
+  - name: shielded_vm
+    description: Enable shielded VM on the bastion host (recommended)
+    type: bool
+    default: true
+    required: false
+  - name: startup_script
+    description: Render a startup script with a template.
+    type: string
+    default: ""
+    required: false
+  - name: subnet
+    description: Self link for the subnet on which the Bastion should live. Can be private when using IAP
+    type: string
+    required: true
+  - name: tags
+    description: Network tags, provided as a list
+    type: list(string)
+    default: []
+    required: false
+  - name: zone
+    description: The primary zone where the bastion host will live
+    type: string
+    default: us-central1-a
+    required: false
+  outputs:
+  - name: hostname
+    description: Host name of the bastion
+  - name: instance_template
+    description: Self link of the bastion instance template for use with a MIG
+  - name: ip_address
+    description: Internal IP address of the bastion host
+  - name: self_link
+    description: Self link of the bastion host
+  - name: service_account
+    description: The email for the service account created for the bastion host
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+    - roles/compute.admin
+    - roles/compute.networkAdmin
+    - roles/iam.serviceAccountUser
+    - roles/compute.instanceAdmin
+    - roles/compute.osLogin
+  services:
+  - cloudresourcemanager.googleapis.com
+  - serviceusage.googleapis.com
+  - compute.googleapis.com
+  - iam.googleapis.com
+  - oslogin.googleapis.com
+  - iap.googleapis.com

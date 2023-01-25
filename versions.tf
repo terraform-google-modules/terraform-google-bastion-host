@@ -21,10 +21,11 @@ terraform {
       version = ">= 3.53, < 5.0"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
+      version = "~> 3.0"
     }
   }
   provider_meta "google" {
-    module_name = "blueprints/terraform/terraform-google-bastion-host/v5.1.0"
+    module_name = "blueprints/terraform/terraform-google-bastion-host/v5.1.1"
   }
 }
