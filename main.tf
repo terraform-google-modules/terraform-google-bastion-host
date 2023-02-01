@@ -54,6 +54,7 @@ module "instance_template" {
   subnetwork          = var.subnet
   subnetwork_project  = var.host_project
   additional_networks = var.additional_networks
+  region              = var.region
 
   service_account = {
     email  = local.service_account_email

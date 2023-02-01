@@ -121,8 +121,7 @@ variable "service_account_roles" {
 }
 
 variable "service_account_roles_supplemental" {
-  type = list(string)
-
+  type        = list(string)
   description = "An additional list of roles to assign to the bastion if desired"
   default     = []
 }
@@ -168,6 +167,13 @@ variable "zone" {
   default     = "us-central1-a"
 }
 
+variable "region" {
+  type = string
+
+  description = "The region where the bastion instance template will live"
+  default     = null
+}
+
 variable "random_role_id" {
   type = bool
 
@@ -190,11 +196,13 @@ variable "additional_ports" {
 
 variable "disk_size_gb" {
   description = "Boot disk size in GB"
+  type        = number
   default     = 100
 }
 
 variable "disk_type" {
   description = "Boot disk type, can be either pd-ssd, local-ssd, or pd-standard"
+  type        = string
   default     = "pd-standard"
 }
 

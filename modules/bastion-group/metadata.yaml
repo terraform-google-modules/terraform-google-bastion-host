@@ -1,0 +1,238 @@
+# Copyright 2022 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#      http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+apiVersion: blueprints.cloud.google.com/v1alpha1
+kind: BlueprintMetadata
+metadata:
+  name: terraform-google-bastion-host
+  annotations:
+    config.kubernetes.io/local-config: "true"
+spec:
+  title: bastion-group
+  source:
+    repo: https://github.com/terraform-google-modules/terraform-google-bastion-host
+    sourceType: git
+  version: 5.1.0
+  actuationTool:
+    type: Terraform
+    version: '>=0.13'
+  examples:
+  - name: bastion_group
+    location: examples/bastion_group
+  - name: iap_tunneling
+    location: examples/iap_tunneling
+  - name: simple_example
+    location: examples/simple_example
+  - name: two_service_example
+    location: examples/two_service_example
+  variables:
+  - name: additional_networks
+    description: Additional network interface details for the instance template, if any.
+    type: |-
+      list(object({
+          network            = string
+          subnetwork         = string
+          subnetwork_project = string
+          network_ip         = string
+          access_config = list(object({
+            nat_ip       = string
+            network_tier = string
+          }))
+        }))
+    default: []
+    required: false
+  - name: fw_name_allow_ssh_from_health_check_cidrs
+    description: Firewall rule name for allowing Health Checks
+    type: string
+    default: allow-ssh-from-health-check-cidrs
+    required: false
+  - name: fw_name_allow_ssh_from_iap
+    description: Firewall rule name for allowing SSH from IAP
+    type: string
+    default: allow-ssh-from-iap-to-bastion-group
+    required: false
+  - name: health_check
+    description: Health check config for the mig.
+    type: |-
+      object({
+          type                = string
+          initial_delay_sec   = number
+          check_interval_sec  = number
+          healthy_threshold   = number
+          timeout_sec         = number
+          unhealthy_threshold = number
+          response            = string
+          proxy_header        = string
+          port                = number
+          request             = string
+
+          # Unused fields.
+          request_path = string
+          host         = string
+        })
+    default:
+      check_interval_sec: 30
+      healthy_threshold: 1
+      host: ""
+      initial_delay_sec: 30
+      port: 22
+      proxy_header: NONE
+      request: ""
+      request_path: ""
+      response: ""
+      timeout_sec: 10
+      type: tcp
+      unhealthy_threshold: 5
+    required: false
+  - name: host_project
+    description: The network host project ID
+    type: string
+    default: ""
+    required: false
+  - name: image_family
+    description: Source image family for the Bastion.
+    type: string
+    default: debian-11
+    required: false
+  - name: image_project
+    description: Project where the source image for the Bastion comes from
+    type: string
+    default: debian-cloud
+    required: false
+  - name: labels
+    description: Key-value map of labels to assign to the bastion host
+    type: map(any)
+    default: {}
+    required: false
+  - name: machine_type
+    description: Instance type for the Bastion host
+    type: string
+    default: n1-standard-1
+    required: false
+  - name: members
+    description: List of IAM resources to allow access to the bastion host
+    type: list(string)
+    default: []
+    required: false
+  - name: metadata
+    description: Key-value map of additional metadata to assign to the instances
+    type: map(string)
+    default: {}
+    required: false
+  - name: name
+    description: Name prefix of bastion instances
+    type: string
+    default: bastion
+    required: false
+  - name: network
+    description: Self link for the network on which the Bastion should live
+    type: string
+    required: true
+  - name: project
+    description: The project ID to deploy to
+    type: string
+    required: true
+  - name: random_role_id
+    description: Enables role random id generation.
+    type: bool
+    default: true
+    required: false
+  - name: region
+    description: The primary region where the bastion host will live
+    type: string
+    default: us-central1
+    required: false
+  - name: scopes
+    description: List of scopes to attach to the bastion host
+    type: list(string)
+    default:
+    - cloud-platform
+    required: false
+  - name: service_account_email
+    description: If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the parent module `service_account_roles` variable so that logging and OS Login work as expected.
+    type: string
+    default: ""
+    required: false
+  - name: service_account_name
+    description: Account ID for the service account
+    type: string
+    default: bastion-group
+    required: false
+  - name: service_account_roles
+    description: List of IAM roles to assign to the service account.
+    type: list(string)
+    default:
+    - roles/logging.logWriter
+    - roles/monitoring.metricWriter
+    - roles/monitoring.viewer
+    - roles/compute.osLogin
+    required: false
+  - name: service_account_roles_supplemental
+    description: An additional list of roles to assign to the bastion if desired
+    type: list(string)
+    default:
+    - ""
+    required: false
+  - name: shielded_vm
+    description: Enable shielded VM on the bastion host (recommended)
+    type: bool
+    default: true
+    required: false
+  - name: startup_script
+    description: Render a startup script with a template.
+    type: string
+    default: ""
+    required: false
+  - name: subnet
+    description: Self link for the subnet on which the Bastion should live. Can be private when using IAP
+    type: string
+    required: true
+  - name: tags
+    description: Network tags, provided as a list
+    type: list(string)
+    default: []
+    required: false
+  - name: target_size
+    description: Number of instances to create
+    type: number
+    default: 1
+    required: false
+  - name: zone
+    description: The primary zone where the bastion host will live
+    type: string
+    default: us-central1-a
+    required: false
+  outputs:
+  - name: instance_group
+    description: Instance-group url of managed instance group
+  - name: self_link
+    description: Name of the bastion MIG
+  - name: service_account
+    description: The email for the service account created for the bastion host
+  roles:
+  - level: Project
+    roles:
+    - roles/owner
+    - roles/compute.admin
+    - roles/compute.networkAdmin
+    - roles/iam.serviceAccountUser
+    - roles/compute.instanceAdmin
+    - roles/compute.osLogin
+  services:
+  - cloudresourcemanager.googleapis.com
+  - serviceusage.googleapis.com
+  - compute.googleapis.com
+  - iam.googleapis.com
+  - oslogin.googleapis.com
+  - iap.googleapis.com

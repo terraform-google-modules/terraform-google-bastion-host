@@ -16,20 +16,24 @@
 
 variable "host_project" {
   description = "The network host project ID."
+  type        = string
   default     = ""
 }
 
 variable "project" {
   description = "The project ID to deploy to."
+  type        = string
 }
 
 variable "fw_name_allow_ssh_from_iap" {
   description = "Firewall rule name for allowing SSH from IAP."
+  type        = string
   default     = "allow-ssh-from-iap-to-tunnel"
 }
 
 variable "network" {
   description = "Self link of the network to attach the firewall to."
+  type        = string
 }
 
 variable "service_accounts" {
