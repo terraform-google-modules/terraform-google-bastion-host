@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.1.1...v5.2.0) (2023-01-25)
+
+
+### Features
+
+* adds `region` setting used to configure the instance template ([#131](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/131)) ([00a863c](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/00a863ce0f37d69e6a9ac256aa358114a3a38bec))
+
 ## [5.1.1](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.1.0...v5.1.1) (2023-01-20)
 
 
