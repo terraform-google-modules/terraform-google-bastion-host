@@ -21,6 +21,9 @@ module "iap_bastion" {
   network = google_compute_network.network.self_link
   subnet  = google_compute_subnetwork.subnet.self_link
   members = var.members
+  disk_labels = {
+    "test-label" = "test-value"
+  }
 }
 
 resource "google_compute_network" "network" {
