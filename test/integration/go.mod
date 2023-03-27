@@ -3,7 +3,7 @@ module github.com/terraform-google-modules/terraform-google-bastion-host/test/in
 go 1.18
 
 require (
-	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.5.0
+	github.com/GoogleCloudPlatform/cloud-foundation-toolkit/infra/blueprint-test v0.5.1
 	github.com/stretchr/testify v1.8.2
 )
 
