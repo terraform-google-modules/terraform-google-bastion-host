@@ -7,6 +7,13 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.2.0...v5.3.0) (2023-04-06)
+
+
+### Features
+
+* add disk labels to bastion vm ([#128](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/128)) ([b1edf32](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/b1edf3268f458cbe1c02da8b0ea75a9db9381b59))
+
 ## [5.2.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.1.1...v5.2.0) (2023-01-25)
 
 
