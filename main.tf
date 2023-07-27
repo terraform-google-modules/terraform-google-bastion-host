@@ -56,6 +56,7 @@ module "instance_template" {
   subnetwork_project  = var.host_project
   additional_networks = var.additional_networks
   region              = var.region
+  disk_encryption_key = var.disk_encryption_key
 
   service_account = {
     email  = local.service_account_email

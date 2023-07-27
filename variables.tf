@@ -174,6 +174,13 @@ variable "region" {
   default     = null
 }
 
+variable "disk_encryption_key" {
+  type = string
+
+  description = "The key used to encrypt the bastion host disk. If not set, the disk will not be encrypted."
+  default     = null
+}
+
 variable "random_role_id" {
   type = bool
 
