@@ -18,6 +18,7 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
   count   = var.create_firewall_rule ? 1 : 0
   project = var.host_project != "" ? var.host_project : var.project
   name    = var.fw_name_allow_ssh_from_iap
+  description = "Managed by Terraform Bastion module."
   network = var.network
 
   allow {
