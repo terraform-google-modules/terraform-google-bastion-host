@@ -83,6 +83,6 @@ You can also try SSHing to the other host, priv-host-a-2. This should work. Try 
 
 ## Outputs
 
-No output.
+No outputs.
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
