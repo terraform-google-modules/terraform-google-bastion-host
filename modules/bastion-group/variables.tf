@@ -84,6 +84,7 @@ variable "health_check" {
     proxy_header        = string
     port                = number
     request             = string
+    enable_logging      = bool
 
     # Unused fields.
     request_path = string
@@ -100,6 +101,7 @@ variable "health_check" {
     proxy_header        = "NONE"
     port                = 22
     request             = ""
+    enable_logging      = false
 
     # Unused fields.
     request_path = ""
@@ -203,9 +205,19 @@ variable "additional_networks" {
     subnetwork         = string
     subnetwork_project = string
     network_ip         = string
+    nic_type           = string
+    stack_type         = string
+    queue_count        = number
     access_config = list(object({
       nat_ip       = string
       network_tier = string
+    }))
+    ipv6_access_config = list(object({
+      network_tier = string
+    }))
+    alias_ip_range = list(object({
+      ip_cidr_range         = string
+      subnetwork_range_name = string
     }))
   }))
 }
