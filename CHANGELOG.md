@@ -7,6 +7,18 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [6.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.3.0...v6.0.0) (2023-10-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v10 ([#153](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/153))
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v10 ([#153](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/153)) ([b2333ee](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/b2333ee6e1e0551b022257bbe019767bb5088a3f))
+* upgraded versions.tf to include minor bumps from tpg v5 ([#157](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/157)) ([4456230](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/4456230664f86b80a2db2f98eef720abc793fd80))
+
 ## [5.3.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.2.0...v5.3.0) (2023-04-06)
 
 
