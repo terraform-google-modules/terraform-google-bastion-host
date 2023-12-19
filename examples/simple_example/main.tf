@@ -15,7 +15,9 @@
  */
 
 module "iap_bastion" {
-  source  = "../.."
+  source  = "terraform-google-modules/bastion-host/google"
+  version = "~> 6.0"
+
   project = var.project_id
   zone    = "us-west1-a"
   network = google_compute_network.network.self_link

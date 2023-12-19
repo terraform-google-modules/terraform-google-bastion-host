@@ -18,7 +18,9 @@ provider "google" {
 }
 
 module "iap_bastion" {
-  source  = "../.."
+  source  = "terraform-google-modules/bastion-host/google"
+  version = "~> 6.0"
+
   project = var.project
   subnet  = var.subnet
   network = var.network
