@@ -22,7 +22,7 @@ variable "target_size" {
 variable "image_family" {
   description = "Source image family for the Bastion."
   type        = string
-  default     = "debian-11"
+  default     = "debian-12"
 }
 
 variable "image_project" {

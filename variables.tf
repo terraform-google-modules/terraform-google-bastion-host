@@ -25,7 +25,7 @@ variable "image_family" {
   type = string
 
   description = "Source image family for the Bastion."
-  default     = "debian-11"
+  default     = "debian-12"
 }
 
 variable "image_project" {
