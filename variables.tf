@@ -276,3 +276,9 @@ variable "additional_networks" {
   }))
 }
 
+variable "can_ip_forward" {
+  type        = bool
+  description = "Whether the bastion should allow IP forwarding."
+  default     = false
+}
+
