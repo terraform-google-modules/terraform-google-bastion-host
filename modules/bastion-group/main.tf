@@ -44,7 +44,7 @@ module "iap_bastion" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 10.0"
+  version = "~> 11.0"
 
   project_id        = var.project
   region            = var.region
