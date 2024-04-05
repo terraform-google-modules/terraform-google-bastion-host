@@ -82,7 +82,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
 | host\_project | The network host project ID | `string` | `""` | no |
 | image | Source image for the Bastion. If image is not specified, image\_family will be used (which is the default). | `string` | `""` | no |
-| image\_family | Source image family for the Bastion. | `string` | `"debian-11"` | no |
+| image\_family | Source image family for the Bastion. | `string` | `"debian-12"` | no |
 | image\_project | Project where the source image for the Bastion comes from | `string` | `"debian-cloud"` | no |
 | labels | Key-value map of labels to assign to the bastion host | `map(any)` | `{}` | no |
 | machine\_type | Instance type for the Bastion host | `string` | `"n1-standard-1"` | no |
