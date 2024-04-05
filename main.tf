@@ -67,6 +67,7 @@ module "instance_template" {
   source_image_project = var.image_project
   startup_script       = var.startup_script
   preemptible          = var.preemptible
+  can_ip_forward       = var.can_ip_forward ? "true" : "false"
 
   tags   = var.tags
   labels = var.labels
