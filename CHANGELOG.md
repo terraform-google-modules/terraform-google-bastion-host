@@ -7,6 +7,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v6.0.0...v7.0.0) (2024-05-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v11 ([#186](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/186))
+
+### Features
+
+* support can_ip_forward ([#184](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/184)) ([a7705b0](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/a7705b015e8138b4b57a526f772ac3e5d06c8c32))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v11 ([#186](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/186)) ([0c7a342](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/0c7a34278fab3223c3965092f7614f7cf078f62c))
+* Update Debian Image to 12 ([#179](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/179)) ([ae88275](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/ae88275381a451ee5d0cc94067526b5684d78780))
+
 ## [6.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v5.3.0...v6.0.0) (2023-10-30)
 
 
