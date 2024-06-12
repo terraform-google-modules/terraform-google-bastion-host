@@ -88,6 +88,12 @@ variable "network" {
   description = "Self link for the network on which the Bastion should live"
 }
 
+variable "network_ip" {
+  type        = string
+  description = "Private IP address for the bastion host"
+  default     = ""
+}
+
 variable "project" {
   type = string
 
@@ -281,4 +287,3 @@ variable "can_ip_forward" {
   description = "Whether the bastion should allow IP forwarding."
   default     = false
 }
-
