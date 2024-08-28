@@ -79,7 +79,7 @@ resource "google_project_iam_member" "os_login_bindings" {
 
 module "iap_tunneling" {
   source  = "terraform-google-modules/bastion-host/google//modules/iap-tunneling"
-  version = "~> 6.0"
+  version = "~> 7.0"
 
   fw_name_allow_ssh_from_iap = "test-allow-ssh-from-iap-to-tunnel"
   project                    = var.project_id
