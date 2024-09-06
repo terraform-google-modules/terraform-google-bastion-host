@@ -7,6 +7,19 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [7.1.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v7.0.0...v7.1.0) (2024-09-06)
+
+
+### Features
+
+* **deps:** Update Terraform Google Provider to v6 (major) ([#205](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/205)) ([bfef016](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/bfef016667783409546ae1feaad4df01174ddb61))
+
+
+### Bug Fixes
+
+* correct access_config to block ([#209](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/209)) ([1413f7e](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/1413f7ea46f38e15956a0ae3054ee554ef70c5df))
+* set empty access_config to null ([#206](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/206)) ([c0b5acf](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/c0b5acf3ca51a4917010f0095621d6743f2b4689))
+
 ## [7.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v6.0.0...v7.0.0) (2024-08-21)
 
 
