@@ -197,6 +197,12 @@ variable "fw_name_allow_ssh_from_iap" {
   default     = "allow-ssh-from-iap-to-bastion-group"
 }
 
+variable "additional_ports" {
+  description = "A list of additional ports/ranges to open access to on the instances from IAP."
+  type        = list(string)
+  default     = []
+}
+
 variable "additional_networks" {
   description = "Additional network interface details for the instance template, if any."
   default     = []
