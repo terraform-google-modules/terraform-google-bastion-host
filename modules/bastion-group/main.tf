@@ -35,6 +35,7 @@ module "iap_bastion" {
   startup_script                     = var.startup_script
   subnet                             = var.subnet
   additional_networks                = var.additional_networks
+  additional_ports                   = var.additional_ports
   zone                               = var.zone
   random_role_id                     = var.random_role_id
   fw_name_allow_ssh_from_iap         = var.fw_name_allow_ssh_from_iap
