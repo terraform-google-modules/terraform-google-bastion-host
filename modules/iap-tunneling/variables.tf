@@ -31,6 +31,12 @@ variable "fw_name_allow_ssh_from_iap" {
   default     = "allow-ssh-from-iap-to-tunnel"
 }
 
+variable "fw_priority" {
+  description = "Firewall rule priority for allowing SSH from IAP."
+  type        = number
+  default     = null
+}
+
 variable "network" {
   description = "Self link of the network to attach the firewall to."
   type        = string
