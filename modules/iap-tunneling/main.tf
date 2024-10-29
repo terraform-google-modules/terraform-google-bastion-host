@@ -31,6 +31,7 @@ resource "google_compute_firewall" "allow_from_iap_to_instances" {
 
   target_service_accounts = length(var.service_accounts) > 0 ? var.service_accounts : null
   target_tags             = length(var.network_tags) > 0 ? var.network_tags : null
+  priority                = var.fw_priority
 }
 
 resource "google_iap_tunnel_instance_iam_binding" "enable_iap" {

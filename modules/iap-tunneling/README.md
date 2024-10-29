@@ -89,6 +89,7 @@ the necessary APIs enabled.
 | additional\_ports | A list of additional ports/ranges to open access to on the instances from IAP. | `list(string)` | `[]` | no |
 | create\_firewall\_rule | If we need to create the firewall rule or not. | `bool` | `true` | no |
 | fw\_name\_allow\_ssh\_from\_iap | Firewall rule name for allowing SSH from IAP. | `string` | `"allow-ssh-from-iap-to-tunnel"` | no |
+| fw\_priority | Firewall rule priority for allowing SSH from IAP. | `number` | `null` | no |
 | host\_project | The network host project ID. | `string` | `""` | no |
 | instances | Names and zones of the instances to allow SSH from IAP. | <pre>list(object({<br>    name = string<br>    zone = string<br>  }))</pre> | n/a | yes |
 | members | List of IAM resources to allow using the IAP tunnel. | `list(string)` | n/a | yes |
