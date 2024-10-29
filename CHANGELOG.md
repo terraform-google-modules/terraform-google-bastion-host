@@ -7,6 +7,23 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v7.1.0...v8.0.0) (2024-10-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v12 ([#212](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/212))
+
+### Features
+
+* **bastion-group:** add variable for additional_ports ([#215](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/215)) ([4bbafb0](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/4bbafb0f14f2fc716cadf94ef4b4658b95f948e4))
+* implement firewall priority in iap-tunneling module ([#216](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/216)) ([4c84d22](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/4c84d2285a2e2f31a0044ac3a3bdbea38b7003e2))
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform terraform-google-modules/vm/google to v12 ([#212](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/212)) ([1eb600a](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/1eb600aa7050fff86a7bec4d87513c8e9ca269b8))
+
 ## [7.1.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v7.0.0...v7.1.0) (2024-09-06)
 
 
