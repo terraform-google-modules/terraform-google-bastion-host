@@ -103,6 +103,10 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   }
 
   source_instance_template = module.instance_template.self_link
+
+  params {
+    resource_manager_tags = var.resource_manager_tags
+  }
 }
 
 module "iap_tunneling" {
