@@ -16,7 +16,7 @@
 
 module "project_ci" {
   source            = "terraform-google-modules/project-factory/google"
-  version           = "~> 17.0"
+  version           = "~> 18.0"
   name              = "ci-bastion-module"
   random_project_id = true
   org_id            = var.org_id
