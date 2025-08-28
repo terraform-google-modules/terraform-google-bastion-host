@@ -7,6 +7,14 @@ The format is based on
 and this project adheres to
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [8.1.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v8.0.0...v8.1.0) (2025-08-28)
+
+
+### Features
+
+* add resource_manager_tags to bastion compute_instance ([#227](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/227)) ([625c343](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/625c343b8d2bbec5343eff6a5340207a44c23023))
+* **deps:** Update Terraform Google Provider to v7 (major) ([#234](https://github.com/terraform-google-modules/terraform-google-bastion-host/issues/234)) ([e02064a](https://github.com/terraform-google-modules/terraform-google-bastion-host/commit/e02064a1310f725f7ff54e3afa45d69c4fb5c269))
+
 ## [8.0.0](https://github.com/terraform-google-modules/terraform-google-bastion-host/compare/v7.1.0...v8.0.0) (2024-10-29)
 
 
