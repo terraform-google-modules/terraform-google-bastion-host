@@ -39,7 +39,7 @@ These sections describe requirements for using this module.
 
 The following dependencies must be available:
 
-- [Terraform][terraform] >= v0.12
+- [Terraform][terraform] >= v1.3
 - [Terraform Provider for GCP][terraform-provider-gcp]
 
 ### APIs
@@ -95,7 +95,7 @@ If the user does not share the same domain as the org the bastion is in, you wil
 | preemptible | Allow the instance to be preempted | `bool` | `false` | no |
 | project | The project ID to deploy to | `string` | n/a | yes |
 | random\_role\_id | Enables role random id generation. | `bool` | `true` | no |
-| region | The region where the bastion instance template will live | `string` | `null` | no |
+| region | The region where the bastion instance template will live | `string` | `"us-central1"` | no |
 | resource\_manager\_tags | (Optional) A tag is a key-value pair that can be attached to a Google Cloud resource. You can use tags to conditionally allow or deny policies based on whether a resource has a specific tag. This value is not returned by the API. In Terraform, this value cannot be updated and changing it will recreate the resource. | `map(string)` | `null` | no |
 | scopes | List of scopes to attach to the bastion host | `list(string)` | <pre>[<br>  "cloud-platform"<br>]</pre> | no |
 | service\_account\_email | If set, the service account and its permissions will not be created. The service account being passed in should have at least the roles listed in the `service_account_roles` variable so that logging and OS Login work as expected. | `string` | `""` | no |

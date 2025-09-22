@@ -177,7 +177,7 @@ variable "region" {
   type = string
 
   description = "The region where the bastion instance template will live"
-  default     = null
+  default     = "us-central1"
 }
 
 variable "random_role_id" {
