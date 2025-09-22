@@ -41,6 +41,7 @@ module "instance_template" {
   version = "~> 13.0"
 
   project_id   = var.project_id
+  region       = "us-west1"
   machine_type = "n1-standard-1"
   subnetwork   = google_compute_subnetwork.subnet.self_link
   service_account = {
