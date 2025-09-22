@@ -20,6 +20,7 @@ module "iap_bastion" {
 
   project = var.project_id
   zone    = "us-west1-a"
+  region  = "us-west1"
   network = google_compute_network.network.self_link
   subnet  = google_compute_subnetwork.subnet.self_link
   members = var.members
