@@ -37,6 +37,7 @@ module "iap_bastion" {
   additional_networks                = var.additional_networks
   additional_ports                   = var.additional_ports
   zone                               = var.zone
+  region                             = var.region
   random_role_id                     = var.random_role_id
   fw_name_allow_ssh_from_iap         = var.fw_name_allow_ssh_from_iap
   create_instance_from_template      = false
@@ -45,7 +46,7 @@ module "iap_bastion" {
 
 module "mig" {
   source  = "terraform-google-modules/vm/google//modules/mig"
-  version = "~> 12.0"
+  version = "~> 13.0"
 
   project_id        = var.project
   region            = var.region
