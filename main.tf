@@ -87,6 +87,8 @@ resource "google_compute_instance_from_template" "bastion_vm" {
   zone    = var.zone
   labels  = var.labels
 
+  allow_stopping_for_update = var.allow_stopping_for_update
+
   network_interface {
     subnetwork         = var.subnet
     subnetwork_project = var.host_project != "" ? var.host_project : var.project

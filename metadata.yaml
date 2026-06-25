@@ -75,6 +75,11 @@ spec:
     type: list(string)
     default: []
     required: false
+  - name: allow_stopping_for_update
+    description: If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail.
+    type: bool
+    default: false
+    required: false
   - name: create_firewall_rule
     description: If we need to create the firewall rule or not.
     type: bool

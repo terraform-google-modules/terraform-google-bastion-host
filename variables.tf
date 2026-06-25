@@ -293,3 +293,9 @@ variable "resource_manager_tags" {
   type        = map(string)
   default     = null
 }
+
+variable "allow_stopping_for_update" {
+  type        = bool
+  description = "If true, allows Terraform to stop the instance to update its properties. If you try to update a property that requires stopping the instance without setting this field, the update will fail."
+  default     = false
+}
