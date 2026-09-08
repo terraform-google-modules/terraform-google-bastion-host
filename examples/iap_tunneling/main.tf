@@ -38,7 +38,7 @@ resource "google_service_account" "vm_sa" {
 # A testing VM to allow OS Login + IAP tunneling.
 module "instance_template" {
   source  = "terraform-google-modules/vm/google//modules/instance_template"
-  version = "~> 13.0"
+  version = "~> 15.0"
 
   project_id   = var.project_id
   region       = "us-west1"
