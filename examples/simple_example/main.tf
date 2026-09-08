@@ -16,7 +16,7 @@
 
 module "iap_bastion" {
   source  = "terraform-google-modules/bastion-host/google"
-  version = "~> 8.0"
+  version = "~> 9.0"
 
   project = var.project_id
   zone    = "us-west1-a"
